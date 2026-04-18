@@ -29,20 +29,20 @@ const benefits = [
 
 export default function WhyUs() {
   return (
-    <section id="nosotros" className="section-padding bg-ocean-950">
+    <section id="nosotros" className="section-padding bg-gray-50">
       <div className="container-max">
 
         <div className="text-center max-w-2xl mx-auto mb-16">
-          <p className="text-volcanic-400 font-semibold text-sm uppercase tracking-widest mb-3">
+          <p className="text-trip-pink font-semibold text-sm uppercase tracking-widest mb-3">
             Por Qué Elegirnos
           </p>
           <h2
-            className="font-display font-bold text-white mb-4"
+            className="font-display font-bold text-trip-dark mb-4"
             style={{ fontSize: 'clamp(1.75rem, 4vw, 3rem)', lineHeight: 1.15, letterSpacing: '-0.02em' }}
           >
             {BUSINESS.yearsExperience} Años No Mienten
           </h2>
-          <p className="text-white/60 text-lg">
+          <p className="text-trip-dark/70 text-lg">
             No somos una plataforma de reservas. Somos un equipo local que vive en Tenerife,
             ama Tenerife y lleva {BUSINESS.yearsExperience} años compartiendo esa pasión con viajeros de todo el mundo.
           </p>
@@ -54,14 +54,14 @@ export default function WhyUs() {
             return (
               <div
                 key={i}
-                className="flex gap-5 p-6 rounded-2xl bg-ocean-800 border border-ocean-700 hover:border-volcanic-500/30 transition-colors duration-300"
+                className="flex gap-5 p-6 rounded-2xl bg-white border border-gray-100 shadow-sm hover:shadow-md hover:border-trip-pink/30 transition-all duration-300"
               >
-                <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-gradient-volcanic flex items-center justify-center">
+                <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-gradient-to-r from-trip-pink to-trip-blue flex items-center justify-center shadow-md">
                   <Icon className="w-6 h-6 text-white" />
                 </div>
                 <div>
-                  <h3 className="font-display font-bold text-lg text-white mb-2">{b.title}</h3>
-                  <p className="text-white/60 text-sm leading-relaxed">{b.description}</p>
+                  <h3 className="font-display font-bold text-lg text-trip-dark mb-2">{b.title}</h3>
+                  <p className="text-trip-dark/70 text-sm leading-relaxed">{b.description}</p>
                 </div>
               </div>
             )

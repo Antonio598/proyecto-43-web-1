@@ -72,8 +72,8 @@ export default function Header() {
          {/* Desktop Nav */}
          <nav className="hidden md:flex items-center gap-8">
            {[
-             { label: 'ACTIVITIES', href: '#experiencias' },
-             { label: 'GROUPS', href: '#nosotros' },
+             { label: 'ACTIVITIES', href: '/#experiencias' },
+             { label: 'GROUPS', href: '/grupos' },
              { label: 'CONTACT US', href: '#contacto' }
            ].map((item) => (
              <Link 
@@ -106,8 +106,8 @@ export default function Header() {
            >
              <nav className="flex flex-col px-6 py-6 space-y-6">
                {[
-                 { label: 'ACTIVITIES', href: '#experiencias' },
-                 { label: 'GROUPS', href: '#nosotros' },
+                 { label: 'ACTIVITIES', href: '/#experiencias' },
+                 { label: 'GROUPS', href: '/grupos' },
                  { label: 'CONTACT US', href: '#contacto' }
                ].map((item) => (
                  <Link 
