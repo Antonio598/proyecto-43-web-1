@@ -35,7 +35,7 @@ export default function Header() {
            
            <div className="flex items-center gap-4">
              <span className="hidden lg:inline text-xs font-semibold bg-white border border-trip-blue/20 shadow-sm px-3 py-1 rounded-full text-trip-dark/80">
-               ¿Sabías? Puedes leer TripTenerife en <span className="text-trip-blue">español</span>.
+               ¿Sabías? Puedes leer TenerifeDreamsExcursion en <span className="text-trip-blue">español</span>.
              </span>
              
              <div className="flex items-center gap-3 text-trip-blue/70">
@@ -55,10 +55,10 @@ export default function Header() {
          {/* Logo */}
          <Link href="/" className="flex items-center gap-1 group">
            <span className="font-display font-bold text-xl sm:text-3xl text-trip-pink tracking-tight transition-transform origin-left">
-             Trip
+             Tenerife Dreams
            </span>
-           <span className="font-display font-bold text-xl sm:text-3xl text-trip-blue tracking-tight relative transition-transform origin-left">
-             Tenerife
+           <span className="font-display font-bold text-xl sm:text-3xl text-trip-blue tracking-tight relative transition-transform origin-left whitespace-nowrap">
+             Excursion
              <motion.div 
                animate={{ rotate: [45, 55, 45], y: [0, -2, 0] }}
                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}

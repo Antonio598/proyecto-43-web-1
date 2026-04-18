@@ -20,7 +20,7 @@ export default function Footer() {
           {/* Brand */}
           <div>
             <h3 className="font-display font-bold text-2xl text-white mb-3">
-              Trip<span className="gradient-text">Tenerife</span>
+              Tenerife Dreams<span className="gradient-text">Excursion</span>
             </h3>
             <p className="text-white/50 text-sm leading-relaxed mb-6">
               La agencia de experiencias más valorada del sur de Tenerife.
@@ -111,8 +111,8 @@ export default function Footer() {
 
         {/* Bottom bar */}
         <div className="pt-8 border-t border-ocean-800 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-white/30 text-xs">
-            © {new Date().getFullYear()} Trip Tenerife. Todos los derechos reservados.
+          <p className="text-white/30 text-xs text-center sm:text-left">
+            © {new Date().getFullYear()} Tenerife Dreams Excursion. Todos los derechos reservados.
           </p>
           <div className="flex gap-6">
             {[

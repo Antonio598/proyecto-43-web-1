@@ -1,5 +1,5 @@
 export const BUSINESS = {
-  name: 'Trip Tenerife',
+  name: 'Tenerife Dreams Excursion',
   tagline: 'La Isla. La Aventura. Tu Historia.',
   yearsExperience: 15,
   whatsappNumber: '',
@@ -14,13 +14,13 @@ export const BUSINESS = {
     googleMaps: 'https://maps.google.com/?q=Siam+Mall+Adeje+Tenerife',
   },
   social: {
-    instagram: 'https://instagram.com/trip_tenerife',
-    facebook: 'https://facebook.com/TripTenerife',
+    instagram: 'https://instagram.com/TenerifeDreamsExcursion',
+    facebook: 'https://facebook.com/TenerifeDreamsExcursion',
     tripadvisor: 'https://www.tripadvisor.com',
   },
   totalReviews: 97,
   averageRating: 4.87,
-  email: 'info@triptenerife.com',
+  email: 'info@tenerifedreamsexcursion.com',
   phone: '+34 822 68 45 04',
 } as const
 

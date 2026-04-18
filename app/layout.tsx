@@ -12,7 +12,7 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
-  title: 'Trip Tenerife | Experiencias Únicas en la Isla del Eterno Verano',
+  title: 'Tenerife Dreams Excursion | Experiencias Únicas',
   description:
     'Las mejores aventuras en Tenerife: parapente biplaza, submarino safari, quad por el Teide y más. 15 años de experiencia. Reserva hoy con cancelación gratuita.',
   keywords: [
@@ -21,9 +21,9 @@ export const metadata: Metadata = {
     'visita Teide', 'actividades Tenerife', 'Siam Mall Adeje',
   ],
   openGraph: {
-    title: 'Trip Tenerife | Experiencias que Cambian tu Vida',
+    title: 'Tenerife Dreams Excursion | Experiencias que Cambian tu Vida',
     description: 'Las aventuras más exclusivas de Tenerife. Reserva ahora y vive lo que no encontrarás en ningún otro lugar.',
-    siteName: 'Trip Tenerife',
+    siteName: 'Tenerife Dreams Excursion',
     locale: 'es_ES',
     type: 'website',
   },
