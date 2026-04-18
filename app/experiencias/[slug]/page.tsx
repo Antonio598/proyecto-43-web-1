@@ -33,7 +33,7 @@ export default function ExperiencePage({ params }: { params: { slug: string } })
         <div className="bg-white rounded-3xl shadow-sm border border-gray-100 overflow-hidden mb-8">
           <div className="grid lg:grid-cols-2 gap-0 relative">
             {/* Image */}
-            <div className="relative h-[300px] lg:h-full min-h-[400px]">
+            <div className="relative h-[300px] sm:h-[400px] lg:h-auto lg:min-h-full">
               <Image
                 src={experience.image}
                 alt={experience.imageAlt}
@@ -50,7 +50,7 @@ export default function ExperiencePage({ params }: { params: { slug: string } })
             </div>
 
             {/* Content Sidebar */}
-            <div className="p-8 lg:p-12 flex flex-col justify-center bg-white z-10">
+            <div className="p-5 sm:p-8 lg:p-12 flex flex-col justify-center bg-white z-10 w-full">
               <div className="flex flex-wrap items-center gap-4 mb-4">
                 {experience.rating > 0 && (
                   <div className="flex items-center gap-1.5 bg-gray-50 px-3 py-1.5 rounded-full border border-gray-100">
@@ -69,7 +69,7 @@ export default function ExperiencePage({ params }: { params: { slug: string } })
                 </div>
               </div>
 
-              <h1 className="font-display font-bold text-4xl lg:text-5xl text-trip-dark mb-4 leading-tight">
+              <h1 className="font-display font-bold text-3xl sm:text-4xl lg:text-5xl text-trip-dark mb-4 leading-tight">
                 {experience.title}
               </h1>
               <p className="text-trip-blue font-medium text-lg lg:text-xl mb-8 leading-relaxed">
@@ -92,7 +92,7 @@ export default function ExperiencePage({ params }: { params: { slug: string } })
                 </div>
                 <Link
                   href={`/checkout/${experience.slug}`}
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 py-4 px-8 bg-gradient-to-r from-trip-pink to-trip-blue text-white font-bold text-lg rounded-xl shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-200"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 py-3 sm:py-4 px-6 sm:px-8 bg-gradient-to-r from-trip-pink to-trip-blue text-white font-bold text-base sm:text-lg rounded-xl shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-200"
                 >
                   <ShoppingCart className="w-5 h-5" />
                   Reservar Ahora
@@ -105,16 +105,16 @@ export default function ExperiencePage({ params }: { params: { slug: string } })
         {/* detailed section */}
         <div className="grid lg:grid-cols-3 gap-8">
           {/* Main Content */}
-          <div className="lg:col-span-2 space-y-8">
-            <div className="bg-white rounded-3xl p-8 shadow-sm border border-gray-100">
-              <h2 className="text-2xl font-bold text-trip-dark mb-6 flex items-center gap-2">
+          <div className="lg:col-span-2 space-y-6 sm:space-y-8">
+            <div className="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-8 shadow-sm border border-gray-100">
+              <h2 className="text-xl sm:text-2xl font-bold text-trip-dark mb-4 sm:mb-6 flex items-center gap-2">
                 Experiencia
               </h2>
-              <p className="text-trip-dark/70 text-lg leading-relaxed mb-8">
+              <p className="text-trip-dark/70 text-base sm:text-lg leading-relaxed mb-6 sm:mb-8">
                 {experience.description}
               </p>
 
-              <div className="grid sm:grid-cols-2 gap-8">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8">
                 {/* Highlights */}
                 <div>
                   <h3 className="font-bold text-trip-dark text-sm uppercase tracking-wide mb-4 flex items-center gap-2">
@@ -153,11 +153,11 @@ export default function ExperiencePage({ params }: { params: { slug: string } })
           </div>
 
           {/* Sidebar */}
-          <div className="space-y-8">
+          <div className="space-y-6 sm:space-y-8">
             {/* Requirements */}
             {experience.requirements && experience.requirements.length > 0 && (
-              <div className="bg-white rounded-3xl p-8 shadow-sm border border-gray-100">
-                <h3 className="font-bold text-trip-dark text-lg mb-4 flex items-center gap-2">
+              <div className="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-8 shadow-sm border border-gray-100">
+                <h3 className="font-bold text-trip-dark text-base sm:text-lg mb-4 flex items-center gap-2">
                   <AlertCircle className="w-5 h-5 text-trip-pink" /> 
                   Requisitos Importantes
                 </h3>
@@ -174,8 +174,8 @@ export default function ExperiencePage({ params }: { params: { slug: string } })
 
             {/* Pricing tiers */}
             {experience.pricingTiers && experience.pricingTiers.length > 0 && (
-              <div className="bg-white rounded-3xl p-8 shadow-sm border border-gray-100">
-                <h3 className="font-bold text-trip-dark text-lg mb-6">Opciones y Tarifas</h3>
+              <div className="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-8 shadow-sm border border-gray-100">
+                <h3 className="font-bold text-trip-dark text-base sm:text-lg mb-4 sm:mb-6">Opciones y Tarifas</h3>
                 <div className="space-y-3">
                   {experience.pricingTiers.map((tier, i) => (
                     <div key={i} className="flex justify-between items-center bg-gray-50 rounded-xl p-4 border border-gray-100">

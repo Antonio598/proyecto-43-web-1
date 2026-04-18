@@ -54,10 +54,10 @@ export default function Header() {
        <div className="container-max px-4 py-4 sm:py-5 flex justify-between items-center">
          {/* Logo */}
          <Link href="/" className="flex items-center gap-1 group">
-           <span className="font-display font-bold text-2xl sm:text-3xl text-trip-pink tracking-tight transition-transform origin-left">
+           <span className="font-display font-bold text-xl sm:text-3xl text-trip-pink tracking-tight transition-transform origin-left">
              Trip
            </span>
-           <span className="font-display font-bold text-2xl sm:text-3xl text-trip-blue tracking-tight relative transition-transform origin-left">
+           <span className="font-display font-bold text-xl sm:text-3xl text-trip-blue tracking-tight relative transition-transform origin-left">
              Tenerife
              <motion.div 
                animate={{ rotate: [45, 55, 45], y: [0, -2, 0] }}
@@ -104,7 +104,7 @@ export default function Header() {
              exit={{ opacity: 0, height: 0 }}
              className="md:hidden bg-white border-t border-gray-100 overflow-hidden shadow-xl"
            >
-             <nav className="flex flex-col px-4 py-4 space-y-4">
+             <nav className="flex flex-col px-6 py-6 space-y-6">
                {[
                  { label: 'ACTIVITIES', href: '#experiencias' },
                  { label: 'GROUPS', href: '#nosotros' },
@@ -113,7 +113,7 @@ export default function Header() {
                  <Link 
                    key={item.label} 
                    href={item.href}
-                   className="text-sm font-bold text-trip-blue hover:text-trip-pink transition-colors tracking-wide py-2"
+                   className="block text-center text-base sm:text-lg font-bold text-trip-blue hover:text-trip-pink transition-colors tracking-wide py-3 bg-trip-blue/5 rounded-xl"
                    onClick={() => setMobileMenuOpen(false)}
                  >
                    {item.label}

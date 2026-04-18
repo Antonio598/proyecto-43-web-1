@@ -57,7 +57,7 @@ export default function ExperienceCard({ experience, index, onOpenModal }: Exper
       </div>
 
       {/* Body */}
-      <div className="flex flex-col flex-1 p-5">
+      <div className="flex flex-col flex-1 p-4 sm:p-5">
 
         {/* Meta */}
         <div className="flex items-center gap-3 mb-3 flex-wrap">
@@ -78,7 +78,7 @@ export default function ExperienceCard({ experience, index, onOpenModal }: Exper
           </div>
         </div>
 
-        <h3 className="font-display font-bold text-xl text-trip-dark mb-1.5 leading-tight">
+        <h3 className="font-display font-bold text-lg sm:text-xl text-trip-dark mb-1.5 leading-tight">
           {experience.title}
         </h3>
 
@@ -103,7 +103,7 @@ export default function ExperienceCard({ experience, index, onOpenModal }: Exper
         )}
 
         {/* Two CTAs */}
-        <div className="flex gap-2 mt-auto">
+        <div className="flex flex-col xs:flex-row sm:flex-row gap-2 mt-auto">
           {/* Ver Detalles */}
           <Link
             href={`/experiencias/${experience.slug}`}
