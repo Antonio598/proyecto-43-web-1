@@ -9,6 +9,12 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        trip: {
+          pink: '#FF1B6B',
+          blue: '#0088FF',
+          dark: '#1E293B',
+          light: '#F8FAFC',
+        },
         ocean: {
           950: '#060E1A',
           900: '#0A1628',
@@ -37,10 +43,10 @@ const config: Config = {
         sans: ['var(--font-inter)', 'system-ui', 'sans-serif'],
       },
       backgroundImage: {
-        'gradient-hero': 'linear-gradient(180deg, rgba(6,14,26,0.65) 0%, rgba(10,22,40,0.35) 50%, rgba(10,22,40,0.90) 100%)',
-        'gradient-card': 'linear-gradient(180deg, transparent 40%, rgba(6,14,26,0.97) 100%)',
-        'gradient-volcanic': 'linear-gradient(135deg, #E8642A 0%, #F5A623 100%)',
-        'gradient-ocean': 'linear-gradient(135deg, #0A1628 0%, #1B3A5C 100%)',
+        'gradient-hero': 'linear-gradient(180deg, rgba(30,41,59,0.3) 0%, rgba(30,41,59,0.1) 50%, rgba(255,255,255,1) 100%)',
+        'gradient-card': 'linear-gradient(180deg, transparent 40%, rgba(0,136,255,0.95) 100%)',
+        'gradient-volcanic': 'linear-gradient(135deg, #FF1B6B 0%, #0088FF 100%)',
+        'gradient-ocean': 'linear-gradient(135deg, #0088FF 0%, #0066CC 100%)',
       },
       boxShadow: {
         'card-hover': '0 25px 60px rgba(232, 100, 42, 0.25)',

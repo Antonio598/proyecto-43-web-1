@@ -20,17 +20,17 @@ export default function ExperiencesGrid() {
 
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-12">
-          <p className="text-volcanic-400 font-semibold text-sm uppercase tracking-widest mb-3">
+          <p className="text-trip-blue font-bold text-sm uppercase tracking-widest mb-3">
             Catálogo Completo
           </p>
           <h2
-            className="font-display font-bold text-white mb-4"
+            className="font-display font-bold text-trip-dark mb-4"
             style={{ fontSize: 'clamp(1.75rem, 4vw, 3rem)', lineHeight: 1.15, letterSpacing: '-0.02em' }}
           >
             Lo Que No Encontrarás{' '}
-            <span className="gradient-text">En Ningún Catálogo</span>
+            <span className="bg-gradient-to-r from-trip-pink to-trip-blue bg-clip-text text-transparent">En Ningún Catálogo</span>
           </h2>
-          <p className="text-white/60 text-lg leading-relaxed">
+          <p className="text-trip-dark/70 text-lg leading-relaxed">
             {experiences.length} experiencias únicas en Tenerife. Grupos reducidos, guías expertos
             y acceso a lugares que los tours masivos no conocen.
           </p>
@@ -42,10 +42,10 @@ export default function ExperiencesGrid() {
             <button
               key={cat.id}
               onClick={() => setActiveCategory(cat.id)}
-              className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
+              className={`px-4 py-2 rounded-full text-sm font-semibold transition-all duration-200 ${
                 activeCategory === cat.id
-                  ? 'bg-gradient-volcanic text-white shadow-cta'
-                  : 'bg-ocean-800 border border-ocean-700 text-white/60 hover:text-white hover:border-volcanic-500/40'
+                  ? 'bg-gradient-to-r from-trip-pink to-trip-blue text-white shadow-md'
+                  : 'bg-gray-100 border border-gray-200 text-trip-dark/60 hover:text-trip-dark hover:border-trip-blue/40'
               }`}
             >
               {cat.label}
@@ -71,17 +71,17 @@ export default function ExperiencesGrid() {
         </div>
 
         {filtered.length === 0 && (
-          <div className="text-center py-16 text-white/40">
+          <div className="text-center py-16 text-trip-dark/40">
             <p className="text-lg">No hay experiencias en esta categoría.</p>
           </div>
         )}
 
         <div className="text-center mt-12">
-          <p className="text-white/40 text-sm">
+          <p className="text-trip-dark/60 text-sm">
             ¿Buscas algo diferente?{' '}
             <a
               href="#"
-              className="text-volcanic-400 hover:text-volcanic-300 underline underline-offset-2 transition-colors"
+              className="text-trip-blue hover:text-trip-pink font-semibold underline underline-offset-2 transition-colors"
             >
               Contáctanos por WhatsApp
             </a>{' '}

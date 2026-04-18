@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google'
 import './globals.css'
 import SessionProvider from '@/components/global/SessionProvider'
 import WhatsAppButton from '@/components/global/WhatsAppButton'
+import Header from '@/components/global/Header'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -41,6 +42,7 @@ export default function RootLayout({
     <html lang="es" className={inter.variable}>
       <body>
         <SessionProvider>
+          <Header />
           {children}
           <WhatsAppButton />
         </SessionProvider>

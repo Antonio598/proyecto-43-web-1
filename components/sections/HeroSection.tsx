@@ -15,7 +15,7 @@ export default function HeroSection() {
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex flex-col justify-center overflow-hidden bg-ocean-950"
+      className="relative min-h-screen flex flex-col justify-center overflow-hidden bg-gray-50"
     >
       {/* Background */}
       <div className="absolute inset-0 z-0">
@@ -89,7 +89,7 @@ export default function HeroSection() {
           >
             <a
               href="#experiencias"
-              className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-gradient-volcanic text-white font-semibold text-lg rounded-2xl shadow-cta animate-pulse-cta hover:scale-105 transition-transform duration-200"
+              className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-r from-trip-pink to-trip-blue text-white font-semibold text-lg rounded-2xl shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-200"
             >
               Ver Experiencias
               <ChevronDown className="w-5 h-5" />

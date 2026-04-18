@@ -15,7 +15,7 @@
   :root {
     --font-clash: 'ClashDisplay', system-ui, sans-serif;
     --font-inter: 'Inter', system-ui, sans-serif;
-    color-scheme: dark;
+    color-scheme: light;
   }
 
   html {
@@ -23,16 +23,16 @@
   }
 
   body {
-    @apply bg-ocean-900 text-white font-sans antialiased;
+    @apply bg-white text-trip-dark font-sans antialiased;
     overflow-x: hidden;
   }
 
   ::selection {
-    @apply bg-volcanic-500 text-white;
+    @apply bg-trip-pink text-white;
   }
 
   :focus-visible {
-    @apply outline-2 outline-volcanic-400 outline-offset-2;
+    @apply outline-2 outline-trip-blue outline-offset-2;
   }
 }
 

@@ -18,7 +18,7 @@ const languages = [
 
 export default function TrustBar() {
   return (
-    <section className="bg-ocean-800 border-y border-ocean-700 py-8">
+    <section className="bg-gray-50 border-y border-gray-200 py-8">
       <div className="container-max px-4 sm:px-6 lg:px-8">
         <div className="flex flex-wrap items-center justify-center gap-8 lg:gap-12">
 
@@ -32,26 +32,26 @@ export default function TrustBar() {
               ))}
             </div>
             <div>
-              <p className="text-white font-semibold text-sm">Excelente</p>
-              <p className="text-white/50 text-xs">Valorado en Trustpilot</p>
+              <p className="text-trip-dark font-bold text-sm">Excelente</p>
+              <p className="text-trip-dark/60 text-xs">Valorado en Trustpilot</p>
             </div>
           </div>
 
-          <div className="hidden lg:block w-px h-10 bg-ocean-600" />
+          <div className="hidden lg:block w-px h-10 bg-gray-300" />
 
           {trustItems.map((item, i) => (
             <div key={i} className="text-center">
-              <p className={`font-display font-bold text-2xl ${item.accent ? 'text-volcanic-400' : 'text-white'}`}>
+              <p className={`font-display font-bold text-2xl ${item.accent ? 'text-trip-pink' : 'text-trip-dark'}`}>
                 {item.value}
               </p>
-              <p className="text-white/60 text-xs mt-0.5">{item.label}</p>
+              <p className="text-trip-dark/60 text-xs mt-0.5">{item.label}</p>
             </div>
           ))}
 
-          <div className="hidden lg:block w-px h-10 bg-ocean-600" />
+          <div className="hidden lg:block w-px h-10 bg-gray-300" />
 
           <div className="flex items-center gap-2">
-            <span className="text-white/60 text-sm">Atención en:</span>
+            <span className="text-trip-dark/60 text-sm">Atención en:</span>
             <div className="flex gap-1 text-xl">
               {languages.map(({ flag, label }) => (
                 <span key={label} className="hover:scale-125 transition-transform cursor-default" title={label}>
