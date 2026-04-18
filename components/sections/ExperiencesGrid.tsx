@@ -4,11 +4,9 @@ import { useState } from 'react'
 import { experiences, categories } from '@/lib/experiences'
 import type { Experience } from '@/types/experience'
 import ExperienceCard from './ExperienceCard'
-import ExperienceModal from './ExperienceModal'
 
 export default function ExperiencesGrid() {
   const [activeCategory, setActiveCategory] = useState<string>('all')
-  const [selectedExperience, setSelectedExperience] = useState<Experience | null>(null)
 
   const filtered = activeCategory === 'all'
     ? experiences
@@ -65,7 +63,7 @@ export default function ExperiencesGrid() {
               key={exp.id}
               experience={exp}
               index={index}
-              onOpenModal={setSelectedExperience}
+              onOpenModal={() => {}}
             />
           ))}
         </div>
@@ -90,11 +88,6 @@ export default function ExperiencesGrid() {
         </div>
       </section>
 
-      {/* Modal */}
-      <ExperienceModal
-        experience={selectedExperience}
-        onClose={() => setSelectedExperience(null)}
-      />
     </>
   )
 }

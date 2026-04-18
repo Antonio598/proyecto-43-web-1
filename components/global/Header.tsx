@@ -71,13 +71,17 @@ export default function Header() {
 
          {/* Desktop Nav */}
          <nav className="hidden md:flex items-center gap-8">
-           {['ACTIVITIES', 'GROUPS', 'CONTACT US'].map((item) => (
+           {[
+             { label: 'ACTIVITIES', href: '#experiencias' },
+             { label: 'GROUPS', href: '#nosotros' },
+             { label: 'CONTACT US', href: '#contacto' }
+           ].map((item) => (
              <Link 
-               key={item} 
-               href={`#${item.toLowerCase().replace(' ', '-')}`}
+               key={item.label} 
+               href={item.href}
                className="text-[13px] font-bold text-trip-blue hover:text-trip-pink transition-colors relative after:absolute after:-bottom-1 after:left-0 after:h-[2px] after:w-0 after:bg-trip-pink hover:after:w-full after:transition-all after:duration-300 tracking-wide"
              >
-               {item}
+               {item.label}
              </Link>
            ))}
          </nav>
@@ -101,14 +105,18 @@ export default function Header() {
              className="md:hidden bg-white border-t border-gray-100 overflow-hidden shadow-xl"
            >
              <nav className="flex flex-col px-4 py-4 space-y-4">
-               {['ACTIVITIES', 'GROUPS', 'CONTACT US'].map((item) => (
+               {[
+                 { label: 'ACTIVITIES', href: '#experiencias' },
+                 { label: 'GROUPS', href: '#nosotros' },
+                 { label: 'CONTACT US', href: '#contacto' }
+               ].map((item) => (
                  <Link 
-                   key={item} 
-                   href={`#${item.toLowerCase().replace(' ', '-')}`}
+                   key={item.label} 
+                   href={item.href}
                    className="text-sm font-bold text-trip-blue hover:text-trip-pink transition-colors tracking-wide py-2"
                    onClick={() => setMobileMenuOpen(false)}
                  >
-                   {item}
+                   {item.label}
                  </Link>
                ))}
              </nav>

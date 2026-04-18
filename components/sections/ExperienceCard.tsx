@@ -14,13 +14,7 @@ interface ExperienceCardProps {
   onOpenModal: (experience: Experience) => void
 }
 
-export default function ExperienceCard({ experience, index, onOpenModal }: ExperienceCardProps) {
   const [isHovered, setIsHovered] = useState(false)
-
-  function handleDetails() {
-    trackInteraction({ type: 'card_view', experienceId: experience.id })
-    onOpenModal(experience)
-  }
 
   function handleBuy() {
     trackInteraction({ type: 'cta_click', experienceId: experience.id })
@@ -34,8 +28,8 @@ export default function ExperienceCard({ experience, index, onOpenModal }: Exper
       transition={{ duration: 0.5, delay: index * 0.06 }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className={`relative flex flex-col rounded-2xl overflow-hidden bg-ocean-800 border transition-all duration-300 ${
-        isHovered ? 'shadow-card-hover -translate-y-2 border-volcanic-500/40' : 'border-ocean-700'
+      className={`relative flex flex-col rounded-2xl overflow-hidden bg-white border border-gray-100 transition-all duration-300 ${
+        isHovered ? 'shadow-xl -translate-y-2 border-trip-blue/20' : ''
       }`}
     >
       {/* Image */}
@@ -55,9 +49,9 @@ export default function ExperienceCard({ experience, index, onOpenModal }: Exper
           </div>
         )}
 
-        <div className="absolute bottom-3 right-3 bg-ocean-900/90 backdrop-blur-sm text-volcanic-300 font-display font-bold text-xl px-3 py-1.5 rounded-xl">
+        <div className="absolute bottom-3 right-3 bg-white/95 backdrop-blur-sm text-trip-blue font-display font-bold text-xl px-3 py-1.5 rounded-xl shadow-sm">
           {experience.priceLabel}
-          <span className="text-white/50 text-xs font-normal ml-1">/ persona</span>
+          <span className="text-trip-dark/50 text-xs font-normal ml-1">/ persona</span>
         </div>
       </div>
 
@@ -69,60 +63,60 @@ export default function ExperienceCard({ experience, index, onOpenModal }: Exper
           {experience.rating > 0 && (
             <div className="flex items-center gap-1">
               <Star className="w-3.5 h-3.5 fill-trust-star text-trust-star" />
-              <span className="text-sm font-semibold text-white">{experience.rating}</span>
-              <span className="text-xs text-white/40">({experience.reviewCount})</span>
+              <span className="text-sm font-semibold text-trip-dark">{experience.rating}</span>
+              <span className="text-xs text-trip-dark/40">({experience.reviewCount})</span>
             </div>
           )}
-          <div className="flex items-center gap-1 text-white/50 text-xs">
+          <div className="flex items-center gap-1 text-trip-dark/60 text-xs">
             <Clock className="w-3 h-3" />
             <span>{experience.duration}</span>
           </div>
-          <div className="flex items-center gap-1 text-white/50 text-xs">
+          <div className="flex items-center gap-1 text-trip-dark/60 text-xs">
             <Users className="w-3 h-3" />
             <span>Máx. {experience.maxGroupSize}</span>
           </div>
         </div>
 
-        <h3 className="font-display font-bold text-xl text-white mb-1.5 leading-tight">
+        <h3 className="font-display font-bold text-xl text-trip-dark mb-1.5 leading-tight">
           {experience.title}
         </h3>
 
-        <p className="text-white/60 text-sm mb-4 leading-relaxed line-clamp-2">
+        <p className="text-trip-dark/60 text-sm mb-4 leading-relaxed line-clamp-2">
           {experience.subtitle}
         </p>
 
         <ul className="space-y-1.5 mb-4 flex-1">
           {experience.highlights.slice(0, 3).map((h, i) => (
-            <li key={i} className="flex items-start gap-2 text-sm text-white/75">
-              <span className="text-volcanic-400 mt-0.5 flex-shrink-0">✓</span>
+            <li key={i} className="flex items-start gap-2 text-sm text-trip-dark/75">
+              <span className="text-trip-pink mt-0.5 flex-shrink-0">✓</span>
               <span>{h}</span>
             </li>
           ))}
         </ul>
 
         {experience.urgencyText && (
-          <div className="flex items-center gap-2 bg-volcanic-500/10 border border-volcanic-500/20 rounded-lg px-3 py-2 mb-4">
-            <AlertCircle className="w-3.5 h-3.5 text-volcanic-400 flex-shrink-0" />
-            <span className="text-volcanic-300 text-xs font-medium">{experience.urgencyText}</span>
+          <div className="flex items-center gap-2 bg-trip-blue/5 border border-trip-blue/20 rounded-lg px-3 py-2 mb-4">
+            <AlertCircle className="w-3.5 h-3.5 text-trip-blue flex-shrink-0" />
+            <span className="text-trip-blue text-xs font-medium">{experience.urgencyText}</span>
           </div>
         )}
 
         {/* Two CTAs */}
         <div className="flex gap-2 mt-auto">
           {/* Ver Detalles */}
-          <button
-            onClick={handleDetails}
-            className="flex-1 inline-flex items-center justify-center gap-1.5 py-3 px-3 bg-ocean-700 border border-ocean-600 text-white/80 hover:text-white hover:bg-ocean-600 font-medium text-sm rounded-xl transition-all duration-200"
+          <Link
+            href={`/experiencias/${experience.slug}`}
+            className="flex-1 inline-flex items-center justify-center gap-1.5 py-3 px-3 bg-white border border-gray-200 text-trip-dark/80 hover:text-trip-blue hover:border-trip-blue/30 font-medium text-sm rounded-xl transition-all duration-200 shadow-sm"
           >
             <Info className="w-4 h-4" />
             Ver Detalles
-          </button>
+          </Link>
 
           {/* Comprar */}
           <Link
             href={`/checkout/${experience.slug}`}
             onClick={handleBuy}
-            className="flex-1 inline-flex items-center justify-center gap-1.5 py-3 px-3 bg-gradient-volcanic text-white font-semibold text-sm rounded-xl hover:shadow-cta hover:scale-[1.02] active:scale-[0.98] transition-all duration-200"
+            className="flex-1 inline-flex items-center justify-center gap-1.5 py-3 px-3 bg-gradient-to-r from-trip-pink to-trip-blue text-white font-semibold text-sm rounded-xl hover:shadow-lg hover:scale-[1.02] active:scale-[0.98] transition-all duration-200"
           >
             <ShoppingCart className="w-4 h-4" />
             Comprar
