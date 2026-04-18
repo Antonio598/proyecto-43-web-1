@@ -3,38 +3,6 @@ import { Experience } from '@/types/experience'
 export const experiences: Experience[] = [
 
   // ─── ACUÁTICAS ───────────────────────────────────────────────────────────────
-
-  {
-    id: 'whale-catamaran-kailani',
-    slug: 'avistamiento-ballenas-kailani',
-    title: 'Kailani Whale Watching',
-    subtitle: 'Máximo 10 personas. Ballenas, delfines y snorkel en bahía privada.',
-    description:
-      'El avistamiento de cetáceos más exclusivo de Tenerife: solo 10 plazas por salida a bordo de un velero privado. Parada de snorkel en una bahía tranquila, aperitivos y la promesa de que los gigantes del Atlántico aparecerán.',
-    price: 50,
-    priceLabel: 'Desde €50',
-    pricingTiers: [
-      { label: 'Adulto', price: 65 },
-      { label: 'Niño 1-8', price: 50 },
-      { label: 'Bebé <1 año', price: 0 },
-    ],
-    rating: 5.0,
-    reviewCount: 23,
-    duration: '3 horas',
-    maxGroupSize: 10,
-    image: 'https://images.unsplash.com/photo-1568430462989-44163eb1752f?w=800&q=80',
-    imageAlt: 'Avistamiento de ballenas en velero privado, Tenerife',
-    badge: 'GRUPO PEQUEÑO',
-    highlights: [
-      'Solo 10 plazas — experiencia íntima',
-      'Snorkel en bahía privada incluido',
-      'Aperitivos y bebidas a bordo',
-    ],
-    includes: ['Equipo de snorkel', 'Aperitivos y bebidas', 'Patrón profesional'],
-    category: 'acuatica',
-    available: true,
-    urgencyText: 'Solo 10 plazas — se agotan rápido',
-  },
   {
     id: 'jet-ski-puerto-colon',
     slug: 'jet-ski-puerto-colon',
