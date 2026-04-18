@@ -14,6 +14,7 @@ interface ExperienceCardProps {
   onOpenModal: (experience: Experience) => void
 }
 
+export default function ExperienceCard({ experience, index, onOpenModal }: ExperienceCardProps) {
   const [isHovered, setIsHovered] = useState(false)
 
   function handleBuy() {
