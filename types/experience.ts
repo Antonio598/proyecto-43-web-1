@@ -1,11 +1,17 @@
+export interface PricingTier {
+  label: string   // e.g. "Adulto", "Niño (2-14)"
+  price: number
+}
+
 export interface Experience {
   id: string
   slug: string
   title: string
   subtitle: string
   description: string
-  price: number
-  priceLabel: string
+  price: number           // precio base (el más bajo)
+  priceLabel: string      // e.g. "Desde €37"
+  pricingTiers?: PricingTier[]
   rating: number
   reviewCount: number
   duration: string
@@ -14,7 +20,9 @@ export interface Experience {
   imageAlt: string
   badge?: string
   highlights: string[]
-  category: 'aventura' | 'naturaleza' | 'cultura' | 'maritimo'
+  includes?: string[]
+  requirements?: string[]
+  category: 'acuatica' | 'aerea' | 'tierra' | 'tour' | 'parque' | 'gastronomia'
   available: boolean
   urgencyText?: string
 }
@@ -25,7 +33,7 @@ export interface BookingPayload {
   experienceTitle: string
   priceAtBooking: number
   timestamp: string
-  source: 'landing_cta' | 'modal_form' | 'whatsapp_float'
+  source: 'landing_cta' | 'buy_button' | 'modal_form' | 'whatsapp_float'
   userLocale: string
   formData?: {
     name?: string

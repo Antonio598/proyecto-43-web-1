@@ -2,36 +2,36 @@
 
 import { useState } from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
 import { motion } from 'framer-motion'
-import { Star, Clock, Users, ArrowRight, AlertCircle } from 'lucide-react'
+import { Star, Clock, Users, ShoppingCart, Info, AlertCircle } from 'lucide-react'
 import type { Experience } from '@/types/experience'
-import { useSession } from '@/components/global/SessionProvider'
 import { trackInteraction } from '@/lib/session'
 
 interface ExperienceCardProps {
   experience: Experience
   index: number
+  onOpenModal: (experience: Experience) => void
 }
 
-export default function ExperienceCard({ experience, index }: ExperienceCardProps) {
+export default function ExperienceCard({ experience, index, onOpenModal }: ExperienceCardProps) {
   const [isHovered, setIsHovered] = useState(false)
-  const { sessionId } = useSession()
 
-  function handleCTAClick() {
-    trackInteraction({ type: 'cta_click', experienceId: experience.id })
+  function handleDetails() {
+    trackInteraction({ type: 'card_view', experienceId: experience.id })
+    onOpenModal(experience)
   }
 
-  const shortRef = sessionId ? sessionId.split('-')[0] : 'web'
-  const whatsappUrl = `https://wa.me/17866741808?text=${encodeURIComponent(
-    `¡Hola! Me interesa la experiencia "${experience.title}" (${experience.priceLabel}). ¿Hay disponibilidad? [Ref: ${shortRef}]`
-  )}`
+  function handleBuy() {
+    trackInteraction({ type: 'cta_click', experienceId: experience.id })
+  }
 
   return (
     <motion.article
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-50px' }}
-      transition={{ duration: 0.5, delay: index * 0.08 }}
+      transition={{ duration: 0.5, delay: index * 0.06 }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       className={`relative flex flex-col rounded-2xl overflow-hidden bg-ocean-800 border transition-all duration-300 ${
@@ -87,12 +87,12 @@ export default function ExperienceCard({ experience, index }: ExperienceCardProp
           {experience.title}
         </h3>
 
-        <p className="text-white/60 text-sm mb-4 leading-relaxed">
+        <p className="text-white/60 text-sm mb-4 leading-relaxed line-clamp-2">
           {experience.subtitle}
         </p>
 
         <ul className="space-y-1.5 mb-4 flex-1">
-          {experience.highlights.map((h, i) => (
+          {experience.highlights.slice(0, 3).map((h, i) => (
             <li key={i} className="flex items-start gap-2 text-sm text-white/75">
               <span className="text-volcanic-400 mt-0.5 flex-shrink-0">✓</span>
               <span>{h}</span>
@@ -107,16 +107,27 @@ export default function ExperienceCard({ experience, index }: ExperienceCardProp
           </div>
         )}
 
-        <a
-          href={whatsappUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          onClick={handleCTAClick}
-          className="inline-flex items-center justify-center gap-2 w-full py-3.5 px-4 bg-gradient-volcanic text-white font-semibold rounded-xl hover:shadow-cta hover:scale-[1.02] active:scale-[0.98] transition-all duration-200"
-        >
-          Reservar Ahora
-          <ArrowRight className="w-4 h-4" />
-        </a>
+        {/* Two CTAs */}
+        <div className="flex gap-2 mt-auto">
+          {/* Ver Detalles */}
+          <button
+            onClick={handleDetails}
+            className="flex-1 inline-flex items-center justify-center gap-1.5 py-3 px-3 bg-ocean-700 border border-ocean-600 text-white/80 hover:text-white hover:bg-ocean-600 font-medium text-sm rounded-xl transition-all duration-200"
+          >
+            <Info className="w-4 h-4" />
+            Ver Detalles
+          </button>
+
+          {/* Comprar */}
+          <Link
+            href={`/checkout/${experience.slug}`}
+            onClick={handleBuy}
+            className="flex-1 inline-flex items-center justify-center gap-1.5 py-3 px-3 bg-gradient-volcanic text-white font-semibold text-sm rounded-xl hover:shadow-cta hover:scale-[1.02] active:scale-[0.98] transition-all duration-200"
+          >
+            <ShoppingCart className="w-4 h-4" />
+            Comprar
+          </Link>
+        </div>
       </div>
     </motion.article>
   )

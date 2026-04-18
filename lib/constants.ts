@@ -2,11 +2,9 @@ export const BUSINESS = {
   name: 'Trip Tenerife',
   tagline: 'La Isla. La Aventura. Tu Historia.',
   yearsExperience: 15,
-  whatsappNumber: '17866741808',
-  whatsappUrl: 'https://wa.me/17866741808',
-  whatsappMessage: encodeURIComponent(
-    '¡Hola! Me interesa una de vuestras experiencias en Tenerife. ¿Podéis darme más información?'
-  ),
+  whatsappNumber: '',
+  whatsappUrl: '#',
+  whatsappMessage: '',
   address: {
     venue: 'Centro Comercial Siam Mall',
     district: 'Adeje',
@@ -26,5 +24,4 @@ export const BUSINESS = {
   phone: '+34 822 68 45 04',
 } as const
 
-export const WHATSAPP_CTA_URL =
-  `${BUSINESS.whatsappUrl}?text=${BUSINESS.whatsappMessage}`
+export const WHATSAPP_CTA_URL = '#'
