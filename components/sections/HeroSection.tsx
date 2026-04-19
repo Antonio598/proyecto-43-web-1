@@ -4,8 +4,7 @@ import React from 'react'
 
 export default function HeroSection() {
   return (
-    <section className="mt-[112px] relative w-full h-[500px] flex items-center justify-center overflow-hidden">
-      {/* Background: imagen local del Teide — guarda en public/images/hero-teide.jpg */}
+    <section className="relative w-full h-[500px] flex items-center justify-center overflow-hidden">
       <div
         className="absolute inset-0 bg-cover bg-center z-0"
         style={{

@@ -51,20 +51,20 @@ export default function Header() {
        </div>
 
        {/* Main Navigation */}
-       <div className="container-max px-4 py-4 sm:py-5 flex justify-between items-center">
+       <div className="container-max px-4 py-2 flex justify-between items-center">
          {/* Logo */}
-         <Link href="/" className="flex items-center group ml-0 sm:ml-8">
-           <span className="font-sans font-bold text-3xl sm:text-[40px] text-trip-pink tracking-tight" style={{ fontWeight: 800 }}>
+         <Link href="/" className="flex items-center group ml-0 sm:ml-4">
+           <span className="font-sans font-bold text-2xl sm:text-[28px] text-trip-pink tracking-tight" style={{ fontWeight: 800 }}>
              TenerifeDreams
            </span>
-           <span className="font-sans font-bold text-3xl sm:text-[40px] text-trip-blue tracking-tight relative -ml-1" style={{ fontWeight: 800 }}>
+           <span className="font-sans font-bold text-2xl sm:text-[28px] text-trip-blue tracking-tight relative" style={{ fontWeight: 800 }}>
              Excursion
-             <motion.div 
+             <motion.div
                animate={{ rotate: [45, 55, 45], y: [0, -4, 0] }}
                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-               className="absolute -top-4 -right-5"
+               className="absolute -top-3 -right-4"
              >
-               <Navigation className="w-6 h-6 text-trip-pink fill-trip-pink stroke-2" />
+               <Navigation className="w-4 h-4 text-trip-pink fill-trip-pink stroke-2" />
              </motion.div>
            </span>
          </Link>
