@@ -22,7 +22,7 @@ export default function Header() {
           <div className="flex items-center gap-4 text-[#888]">
             <a href="#" className="hover:text-[#25D366] transition-colors"><WhatsAppIcon className="w-4 h-4" /></a>
             <a href="mailto:info@tenerifedreamsexcursion.com" className="hover:text-[#0099ff] transition-colors"><Mail className="w-4 h-4" /></a>
-            <a href="#" className="hover:text-[#0099ff] transition-colors"><ShoppingCart className="w-4 h-4" /></a>
+            <Link href="/cart" className="hover:text-[#0099ff] transition-colors"><ShoppingCart className="w-4 h-4" /></Link>
           </div>
         </div>
       </div>
