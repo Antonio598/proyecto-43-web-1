@@ -67,15 +67,23 @@ export default function Footer() {
           <div className="flex flex-col gap-4">
             <h4 className="font-bold text-lg mb-2">LINKS</h4>
             <ul className="space-y-3 text-sm">
-              <li><Link href="#" className="hover:underline">My Account</Link></li>
+              <li><Link href="/account" className="hover:underline">My Account</Link></li>
               <li>
-                <Link href="#" className="hover:underline flex items-center gap-1">
+                <Link href="/cart" className="hover:underline flex items-center gap-1">
                   My Cart <ShoppingCart className="w-4 h-4 ml-1" />
                 </Link>
               </li>
               <li><Link href="#" className="hover:underline">FAQ</Link></li>
-              <li><Link href="#" className="hover:underline">Instagram</Link></li>
-              <li><Link href="#" className="hover:underline">Facebook</Link></li>
+              <li>
+                <a href="https://www.instagram.com/trip_tenerife?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener noreferrer" className="hover:underline">
+                  Instagram
+                </a>
+              </li>
+              <li>
+                <a href="https://www.facebook.com/TripTenerife/" target="_blank" rel="noopener noreferrer" className="hover:underline">
+                  Facebook
+                </a>
+              </li>
             </ul>
           </div>
 
