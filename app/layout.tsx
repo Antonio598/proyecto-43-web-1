@@ -4,6 +4,7 @@ import './globals.css'
 import SessionProvider from '@/components/global/SessionProvider'
 import WhatsAppButton from '@/components/global/WhatsAppButton'
 import Header from '@/components/global/Header'
+import Footer from '@/components/sections/Footer'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -44,6 +45,7 @@ export default function RootLayout({
         <SessionProvider>
           <Header />
           {children}
+          <Footer />
           <WhatsAppButton />
         </SessionProvider>
       </body>

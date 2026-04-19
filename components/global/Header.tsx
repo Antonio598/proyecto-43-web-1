@@ -18,32 +18,32 @@ export default function Header() {
   }, [])
 
   return (
-    <header className={`fixed top-0 w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-white/95 backdrop-blur-md shadow-sm' : 'bg-white'}`}>
+    <header className="w-full z-50 bg-white">
        {/* Top Bar */}
-       <div className="bg-trip-blue/5 border-b border-trip-blue/10">
-         <div className="container-max px-4 py-2 flex justify-between items-center text-xs sm:text-sm font-medium text-trip-dark/70">
-           <div className="flex gap-4 sm:gap-6">
-             <a href="tel:+34822684504" className="flex items-center gap-1.5 hover:text-trip-blue transition-colors">
-               <Phone className="w-3.5 h-3.5" />
-               <span className="hidden sm:inline text-trip-blue/80">+34 822 68 45 04</span>
-             </a>
-             <div className="flex items-center gap-1.5 text-trip-blue/80">
-               <Clock className="w-3.5 h-3.5" />
-               <span className="hidden sm:inline">9h a 22h</span>
-             </div>
+       <div className="bg-[#f7f7f7] border-b border-gray-200">
+         <div className="container-max px-4 py-2 flex flex-col sm:flex-row justify-center sm:justify-between items-center text-[13px] text-[#666]">
+           <div className="flex items-center justify-center w-full sm:w-auto mb-2 sm:mb-0 gap-1 text-center">
+             <span className="font-semibold text-[#333]">¿Sabías?</span> Puedes leer TenerifeDreamsExcursion en español. 
+             <a href="#" className="text-[#0099ff] hover:underline ml-1">Continuar en español. 🇪🇸</a>
            </div>
            
-           <div className="flex items-center gap-4">
-             <span className="hidden lg:inline text-xs font-semibold bg-white border border-trip-blue/20 shadow-sm px-3 py-1 rounded-full text-trip-dark/80">
-               ¿Sabías? Puedes leer TenerifeDreamsExcursion en <span className="text-trip-blue">español</span>.
-             </span>
+           <div className="flex items-center gap-6">
+             <div className="flex gap-4">
+               <a href="tel:+34822684504" className="flex items-center gap-2 hover:text-[#0099ff] transition-colors">
+                 <Phone className="w-3.5 h-3.5 text-[#0099ff]" />
+                 <span className="text-[#0099ff]">+34 822 68 45 04</span>
+               </a>
+               <div className="flex items-center gap-2 text-[#666]">
+                 <Clock className="w-3.5 h-3.5 text-[#0099ff]" />
+                 <span>9h á 22h</span>
+               </div>
+             </div>
              
-             <div className="flex items-center gap-3 text-trip-blue/70">
+             <div className="flex items-center gap-4 text-[#999]">
                <a href="#" className="hover:text-[#25D366] transition-colors"><WhatsAppIcon className="w-4 h-4"/></a>
-               <a href="#" className="hover:text-trip-blue transition-colors"><Mail className="w-4 h-4" /></a>
-               <a href="#" className="hover:text-trip-pink transition-colors relative">
+               <a href="#" className="hover:text-[#0099ff] transition-colors"><Mail className="w-4 h-4" /></a>
+               <a href="#" className="hover:text-[#0099ff] transition-colors relative">
                  <ShoppingCart className="w-4 h-4" />
-                 <span className="absolute -top-1.5 -right-1.5 w-3 h-3 bg-trip-pink rounded-full border-2 border-white"></span>
                </a>
              </div>
            </div>
@@ -53,18 +53,18 @@ export default function Header() {
        {/* Main Navigation */}
        <div className="container-max px-4 py-4 sm:py-5 flex justify-between items-center">
          {/* Logo */}
-         <Link href="/" className="flex items-center gap-1 group">
-           <span className="font-display font-bold text-xl sm:text-3xl text-trip-pink tracking-tight transition-transform origin-left">
-             Tenerife Dreams
+         <Link href="/" className="flex items-center group ml-0 sm:ml-8">
+           <span className="font-sans font-bold text-3xl sm:text-[40px] text-trip-pink tracking-tight" style={{ fontWeight: 800 }}>
+             TenerifeDreams
            </span>
-           <span className="font-display font-bold text-xl sm:text-3xl text-trip-blue tracking-tight relative transition-transform origin-left whitespace-nowrap">
+           <span className="font-sans font-bold text-3xl sm:text-[40px] text-trip-blue tracking-tight relative -ml-1" style={{ fontWeight: 800 }}>
              Excursion
              <motion.div 
-               animate={{ rotate: [45, 55, 45], y: [0, -2, 0] }}
+               animate={{ rotate: [45, 55, 45], y: [0, -4, 0] }}
                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-               className="absolute -top-1 sm:-top-2 -right-3"
+               className="absolute -top-4 -right-5"
              >
-               <Navigation className="w-4 h-4 text-trip-pink fill-trip-pink" />
+               <Navigation className="w-6 h-6 text-trip-pink fill-trip-pink stroke-2" />
              </motion.div>
            </span>
          </Link>
@@ -79,7 +79,7 @@ export default function Header() {
              <Link 
                key={item.label} 
                href={item.href}
-               className="text-[13px] font-bold text-trip-blue hover:text-trip-pink transition-colors relative after:absolute after:-bottom-1 after:left-0 after:h-[2px] after:w-0 after:bg-trip-pink hover:after:w-full after:transition-all after:duration-300 tracking-wide"
+               className="text-[14px] font-bold text-[#0099ff] hover:text-[#0077cc] transition-colors tracking-wide uppercase px-2 py-1"
              >
                {item.label}
              </Link>

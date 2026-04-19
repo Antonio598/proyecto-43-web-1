@@ -1,135 +1,106 @@
 import Link from 'next/link'
-import { MapPin, Phone, Mail, Instagram, Facebook } from 'lucide-react'
-import { BUSINESS, WHATSAPP_CTA_URL } from '@/lib/constants'
-
-const experienceLinks = [
-  'Parapente Biplaza',
-  'Submarino Safari',
-  'Quad por el Teide',
-  'Avistamiento Cetáceos',
-  'Rutas del Vino',
-  'Visita al Teide',
-]
+import { Phone, Mail, ShoppingCart } from 'lucide-react'
 
 export default function Footer() {
   return (
-    <footer id="contacto" className="bg-ocean-950 border-t border-ocean-800">
-      <div className="section-padding container-max">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
+    <footer id="contacto" className="bg-[#0099ff] text-white py-12 border-t mt-auto">
+      <div className="container-max px-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-4">
 
-          {/* Brand */}
-          <div>
-            <h3 className="font-display font-bold text-2xl text-white mb-3">
-              Tenerife Dreams<span className="gradient-text">Excursion</span>
-            </h3>
-            <p className="text-white/50 text-sm leading-relaxed mb-6">
-              La agencia de experiencias más valorada del sur de Tenerife.
-              {BUSINESS.yearsExperience} años creando recuerdos que duran toda la vida.
-            </p>
-            <a
-              href={WHATSAPP_CTA_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-whatsapp hover:bg-green-500 text-white font-semibold px-5 py-3 rounded-xl transition-colors"
-            >
-              <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
-                <path d="M12 0C5.373 0 0 5.373 0 12c0 2.117.553 4.104 1.523 5.833L.057 23.077a.75.75 0 00.921.921l5.244-1.466A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22.5c-1.99 0-3.859-.553-5.455-1.516l-.39-.232-4.04 1.129 1.129-4.04-.232-.39A10.453 10.453 0 011.5 12C1.5 6.201 6.201 1.5 12 1.5S22.5 6.201 22.5 12 17.799 22.5 12 22.5z"/>
-              </svg>
-              Escríbenos Ahora
-            </a>
+          {/* ABOUT US */}
+          <div className="flex flex-col gap-4">
+            <h4 className="font-bold text-lg mb-2">ABOUT US</h4>
+            <div className="text-sm leading-relaxed">
+              <p>TenerifeDreamsExcursion.com</p>
+              <p>Best Tenerife&apos;s tours at the best price</p>
+              <p className="mt-4">I-0004273.1</p>
+            </div>
+            
+            {/* Payment Methods Placeholder */}
+            <div className="flex flex-wrap gap-2 mt-2">
+              <div className="w-10 h-6 bg-white rounded flex items-center justify-center text-xs text-[#0099ff] font-bold">PayPal</div>
+              <div className="w-10 h-6 bg-white rounded flex items-center justify-center text-xs text-[#0099ff] font-bold">Visa</div>
+              <div className="w-10 h-6 bg-white rounded flex items-center justify-center text-xs text-[#0099ff] font-bold">MC</div>
+              <div className="w-10 h-6 bg-white rounded flex items-center justify-center text-xs text-[#0099ff] font-bold">GPay</div>
+              <div className="w-10 h-6 bg-white rounded flex items-center justify-center text-xs text-[#0099ff] font-bold">Apple</div>
+            </div>
+
+            {/* Google Rating */}
+            <div className="bg-white rounded-lg p-3 inline-flex items-center gap-3 mt-4 w-max shadow-sm">
+               <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" alt="Google" className="w-6 h-6" />
+               <div className="flex flex-col">
+                 <span className="text-[#333] text-sm font-semibold leading-tight">Google rating</span>
+                 <div className="flex items-center gap-1">
+                   <span className="text-[#333] text-sm font-bold">4.8</span>
+                   <div className="flex text-[#ffcc00] gap-0.5">
+                    {Array(5).fill(0).map((_, i) => (
+                      <svg key={i} className="w-3.5 h-3.5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                    ))}
+                   </div>
+                 </div>
+               </div>
+            </div>
           </div>
 
-          {/* Experiences */}
-          <div>
-            <h4 className="font-semibold text-white mb-4">Experiencias</h4>
-            <ul className="space-y-2">
-              {experienceLinks.map((exp) => (
-                <li key={exp}>
-                  <a
-                    href="#experiencias"
-                    className="text-white/50 hover:text-volcanic-400 text-sm transition-colors"
-                  >
-                    {exp}
-                  </a>
-                </li>
-              ))}
+          {/* LINKS */}
+          <div className="flex flex-col gap-4">
+            <h4 className="font-bold text-lg mb-2">LINKS</h4>
+            <ul className="space-y-3 text-sm">
+              <li><Link href="#" className="hover:underline">My Account</Link></li>
+              <li>
+                <Link href="#" className="hover:underline flex items-center gap-1">
+                  My Cart <ShoppingCart className="w-4 h-4 ml-1" />
+                </Link>
+              </li>
+              <li><Link href="#" className="hover:underline">FAQ</Link></li>
+              <li><Link href="#" className="hover:underline">Instagram</Link></li>
+              <li><Link href="#" className="hover:underline">Facebook</Link></li>
             </ul>
           </div>
 
-          {/* Contact */}
-          <div>
-            <h4 className="font-semibold text-white mb-4">Contacto</h4>
-            <ul className="space-y-3">
-              <li className="flex items-start gap-3 text-white/50 text-sm">
-                <MapPin className="w-4 h-4 text-volcanic-400 mt-0.5 flex-shrink-0" />
-                <a
-                  href={BUSINESS.address.googleMaps}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-white transition-colors"
-                >
-                  {BUSINESS.address.full}
-                </a>
+          {/* BLOG */}
+          <div className="flex flex-col gap-4">
+            <h4 className="font-bold text-lg mb-2">BLOG</h4>
+            <div className="flex flex-col gap-6 text-sm font-semibold">
+              <Link href="#" className="hover:underline block">La Gomera, the magic island.</Link>
+              <div className="w-full h-px bg-white/20 border-dotted border-b"></div>
+              <Link href="#" className="hover:underline block">Masca: a beautiful village and a magical trekking</Link>
+              <div className="w-full h-px bg-white/20 border-dotted border-b"></div>
+              <Link href="#" className="hover:underline block">Visit La Laguna in the north of Tenerife</Link>
+            </div>
+          </div>
+
+          {/* CONTACT US */}
+          <div className="flex flex-col gap-4">
+            <h4 className="font-bold text-lg mb-2">CONTACT US</h4>
+            <ul className="space-y-4 text-sm mt-1">
+              <li className="flex items-center gap-3">
+                <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center flex-shrink-0">
+                   <Phone className="w-4 h-4 text-[#0099ff]" />
+                </div>
+                <span>+34 822 68 45 04</span>
               </li>
-              <li className="flex items-center gap-3 text-white/50 text-sm">
-                <Phone className="w-4 h-4 text-volcanic-400 flex-shrink-0" />
-                <a href={BUSINESS.whatsappUrl} target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
-                  WhatsApp: +1 786 674 1808
-                </a>
-              </li>
-              <li className="flex items-center gap-3 text-white/50 text-sm">
-                <Mail className="w-4 h-4 text-volcanic-400 flex-shrink-0" />
-                <a href={`mailto:${BUSINESS.email}`} className="hover:text-white transition-colors">
-                  {BUSINESS.email}
-                </a>
+              <li className="flex items-center gap-3">
+                <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center flex-shrink-0">
+                   <Mail className="w-4 h-4 text-[#0099ff]" />
+                </div>
+                <span>info@tenerifedreamsexcursion.com</span>
               </li>
             </ul>
 
-            <div className="flex gap-4 mt-6">
-              <a
-                href={BUSINESS.social.instagram}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-white/40 hover:text-volcanic-400 transition-colors"
-                aria-label="Instagram"
-              >
-                <Instagram className="w-5 h-5" />
-              </a>
-              <a
-                href={BUSINESS.social.facebook}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-white/40 hover:text-volcanic-400 transition-colors"
-                aria-label="Facebook"
-              >
-                <Facebook className="w-5 h-5" />
-              </a>
+            <div className="mt-6 text-[10px] leading-tight text-white/80">
+              <p className="mb-2">Proyecto cofinanciado por el Fondo Europeo de Desarrollo Regional como parte de la respuesta de la Unión a la pandemia de COVID-19. Subvenciones dirigidas al mantenimiento de la actividad de personas trabajadoras autónomas y pequeñas y medianas empresas, de los sectores más afectados por la crisis derivada de la COVID-19.</p>
+              
+              <div className="flex gap-2 mt-4 items-center">
+                 <div className="bg-white p-1 rounded">
+                   <img src="https://upload.wikimedia.org/wikipedia/commons/b/b7/Flag_of_Europe.svg" alt="EU" className="h-6" />
+                 </div>
+                 <span className="font-bold">Unión Europea</span>
+              </div>
             </div>
           </div>
         </div>
 
-        {/* Bottom bar */}
-        <div className="pt-8 border-t border-ocean-800 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-white/30 text-xs text-center sm:text-left">
-            © {new Date().getFullYear()} Tenerife Dreams Excursion. Todos los derechos reservados.
-          </p>
-          <div className="flex gap-6">
-            {[
-              { label: 'Política de Privacidad', href: '/privacidad' },
-              { label: 'Aviso Legal', href: '/legal' },
-              { label: 'Cookies', href: '/cookies' },
-            ].map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="text-white/30 hover:text-white/60 text-xs transition-colors"
-              >
-                {link.label}
-              </Link>
-            ))}
-          </div>
-        </div>
       </div>
     </footer>
   )
