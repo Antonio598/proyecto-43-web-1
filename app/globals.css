@@ -20,11 +20,24 @@
 
   html {
     scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
   }
 
   body {
     @apply bg-white text-trip-dark font-sans antialiased;
     overflow-x: hidden;
+    /* Smooth momentum scrolling on iOS */
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Remove tap highlight on mobile */
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* Minimum tap target size for interactive elements */
+  button, a {
+    touch-action: manipulation;
   }
 
   ::selection {
@@ -38,7 +51,7 @@
 
 @layer components {
   .section-padding {
-    @apply px-4 sm:px-6 lg:px-8 py-16 md:py-24;
+    @apply px-4 sm:px-6 lg:px-8 py-12 md:py-20;
   }
 
   .container-max {
@@ -47,5 +60,10 @@
 
   .gradient-text {
     @apply bg-gradient-volcanic bg-clip-text text-transparent;
+  }
+
+  /* Mobile-safe full-width button */
+  .btn-primary {
+    @apply bg-[#ff3399] hover:bg-[#e62e8a] active:bg-[#cc2979] text-white font-bold text-sm uppercase tracking-wide px-6 py-3 transition-colors min-h-[44px] flex items-center justify-center;
   }
 }

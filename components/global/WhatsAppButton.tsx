@@ -21,7 +21,7 @@ export default function WhatsAppButton() {
   }
 
   return (
-    <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3">
+    <div className="fixed bottom-5 right-4 sm:bottom-6 sm:right-6 z-50 flex flex-col items-end gap-3">
       <AnimatePresence>
         {showTooltip && !dismissed && (
           <motion.div
@@ -50,7 +50,7 @@ export default function WhatsAppButton() {
         onClick={handleClick}
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.95 }}
-        className="w-16 h-16 bg-[#25D366] rounded-full shadow-2xl flex items-center justify-center relative animate-float"
+        className="w-14 h-14 sm:w-16 sm:h-16 bg-[#25D366] rounded-full shadow-2xl flex items-center justify-center relative animate-float"
         aria-label="Contactar por WhatsApp"
       >
         <WhatsAppIcon className="w-8 h-8 text-white fill-white" />
