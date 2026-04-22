@@ -20,7 +20,7 @@ export const experiences: Experience[] = [
     reviewCount: 14,
     duration: '1 hora',
     maxGroupSize: 6,
-    image: 'https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=800&q=80',
+    image: '/images/jet-ski-puerto-colon.jpg',
     imageAlt: 'Jet Ski en la costa sur de Tenerife',
     highlights: [
       'Guía certificado incluido',
