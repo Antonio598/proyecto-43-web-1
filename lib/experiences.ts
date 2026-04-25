@@ -125,8 +125,15 @@ export const experiences: Experience[] = [
     reviewCount: 25,
     duration: '1.5 – 3 horas',
     maxGroupSize: 8,
-    image: 'https://images.unsplash.com/photo-1558981359-219d6364c9c8?w=800&q=80',
+    image: '/images/quad/quad-1.jpg',
     imageAlt: 'Excursión en quad por el Parque Nacional del Teide, Tenerife',
+    gallery: [
+      '/images/quad/quad-1.jpg',
+      '/images/quad/quad-2.jpg',
+      '/images/quad/quad-3.jpg',
+      '/images/quad/quad-4.jpg',
+      '/images/quad/quad-5.jpg',
+    ],
     badge: 'PLAZAS LIMITADAS',
     highlights: [
       'Acceso a zonas exclusivas del Parque Nacional',
