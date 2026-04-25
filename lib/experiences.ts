@@ -22,6 +22,13 @@ export const experiences: Experience[] = [
     maxGroupSize: 6,
     image: '/images/jet-ski-puerto-colon.jpg',
     imageAlt: 'Jet Ski en la costa sur de Tenerife',
+    gallery: [
+      '/images/jet-ski-puerto-colon.jpg',
+      '/images/jet-ski/jet-ski-2.jpg',
+      '/images/jet-ski/jet-ski-3.jpg',
+      '/images/jet-ski/jet-ski-4.jpg',
+      '/images/jet-ski/jet-ski-5.jpg',
+    ],
     highlights: [
       'Guía certificado incluido',
       'Chalecos salvavidas y equipo de seguridad',

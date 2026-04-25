@@ -18,6 +18,7 @@ export interface Experience {
   maxGroupSize: number
   image: string
   imageAlt: string
+  gallery?: string[]
   badge?: string
   highlights: string[]
   includes?: string[]
