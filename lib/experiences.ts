@@ -166,8 +166,17 @@ export const experiences: Experience[] = [
     reviewCount: 50,
     duration: '2 – 4 horas',
     maxGroupSize: 6,
-    image: 'https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?w=800&q=80',
+    image: '/images/buggy/buggy-1.jpg',
     imageAlt: 'Buggy Safari por los paisajes volcánicos del Teide, Tenerife',
+    gallery: [
+      '/images/buggy/buggy-1.jpg',
+      '/images/buggy/buggy-2.jpg',
+      '/images/buggy/buggy-3.jpg',
+      '/images/buggy/buggy-4.jpg',
+      '/images/buggy/buggy-5.jpg',
+      '/images/buggy/buggy-6.jpg',
+      '/images/buggy/buggy-7.jpg',
+    ],
     highlights: [
       'Hasta 6 pasajeros por buggy',
       'Recogida gratuita sur de Tenerife',
