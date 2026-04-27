@@ -9,11 +9,39 @@ import { notFound } from 'next/navigation'
 import { experiences } from '@/lib/experiences'
 import { ChevronLeft, Lock, Users, Calendar, Phone, Mail, User, MessageSquare, ShoppingCart } from 'lucide-react'
 
+const CUTOFF_HOUR = 23
+const CUTOFF_MINUTE = 30
+
+function isPastCutoff(): boolean {
+  const now = new Date()
+  return (
+    now.getHours() > CUTOFF_HOUR ||
+    (now.getHours() === CUTOFF_HOUR && now.getMinutes() >= CUTOFF_MINUTE)
+  )
+}
+
+function getMinBookingDate(): string {
+  const d = new Date()
+  d.setDate(d.getDate() + (isPastCutoff() ? 2 : 1))
+  return d.toISOString().split('T')[0]
+}
+
+function formatDate(isoDate: string): string {
+  return new Date(isoDate + 'T00:00:00').toLocaleDateString('en-GB', {
+    weekday: 'long', day: 'numeric', month: 'long',
+  })
+}
+
 const schema = z.object({
   name: z.string().min(2, 'Name too short').max(80),
   email: z.string().email('Invalid email'),
   phone: z.string().min(9, 'Invalid phone').max(20),
-  date: z.string().min(1, 'Please select a date'),
+  date: z.string()
+    .min(1, 'Please select a date')
+    .refine(
+      (val) => !val || val >= getMinBookingDate(),
+      'Reservations for this date are closed. Please select a later date.'
+    ),
   people: z.coerce.number().int().min(1, 'Min 1 person').max(20, 'Max 20 people'),
   tierLabel: z.string().min(1, 'Please select an option'),
   tierPrice: z.coerce.number().positive(),
@@ -21,12 +49,6 @@ const schema = z.object({
 })
 
 type FormData = z.infer<typeof schema>
-
-const tomorrow = () => {
-  const d = new Date()
-  d.setDate(d.getDate() + 1)
-  return d.toISOString().split('T')[0]
-}
 
 function inputClass(hasError: boolean) {
   return `w-full border ${hasError ? 'border-red-300 bg-red-50' : 'border-gray-200 bg-white'} px-3 py-2.5 text-sm text-[#333] outline-none focus:border-[#1a3a5c] transition-colors`
@@ -98,6 +120,17 @@ export default function CheckoutPage({ params }: { params: { slug: string } }) {
 
         <div className="grid lg:grid-cols-[1fr_300px] gap-6 items-start">
 
+          {/* ── Mobile-only order summary (shown above form) ── */}
+          <div className="lg:hidden bg-white shadow-sm p-4 flex flex-col gap-3">
+            <h3 className="font-bold text-[#222] text-sm uppercase tracking-wide border-b border-gray-100 pb-2">Order Summary</h3>
+            <div className="text-sm font-semibold text-[#333] leading-snug">{experience.title}</div>
+            {tierLabel && <div className="text-xs text-[#888]">{tierLabel}</div>}
+            <div className="flex items-center justify-between text-sm border-t border-gray-100 pt-2">
+              <span className="text-[#666]">€{tierPrice} × {people} {people === 1 ? 'person' : 'people'}</span>
+              <span className="font-extrabold text-[#f5920a] text-lg">€{total.toFixed(2)}</span>
+            </div>
+          </div>
+
           {/* ── Left: form ── */}
           <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-5">
 
@@ -142,7 +175,16 @@ export default function CheckoutPage({ params }: { params: { slug: string } }) {
                 </Field>
                 <div className="sm:col-span-2">
                   <Field label="Preferred date" icon={<Calendar className="w-4 h-4" />} error={errors.date?.message}>
-                    <input {...register('date')} type="date" min={tomorrow()} className={inputClass(!!errors.date)} />
+                    <input {...register('date')} type="date" min={getMinBookingDate()} className={inputClass(!!errors.date)} />
+                    {isPastCutoff() ? (
+                      <p className="text-xs text-amber-600 bg-amber-50 border border-amber-200 px-3 py-2 mt-1 leading-relaxed">
+                        ⚠️ Tonight&apos;s booking window has closed (23:30). The earliest available date is <strong>{formatDate(getMinBookingDate())}</strong>.
+                      </p>
+                    ) : (
+                      <p className="text-xs text-[#999] mt-1">
+                        Bookings close at 23:30 the day before your chosen date.
+                      </p>
+                    )}
                   </Field>
                 </div>
                 <div className="sm:col-span-2">
@@ -172,8 +214,8 @@ export default function CheckoutPage({ params }: { params: { slug: string } }) {
             </p>
           </form>
 
-          {/* ── Right: order summary ── */}
-          <div className="bg-white shadow-sm p-5 flex flex-col gap-4 lg:sticky lg:top-4">
+          {/* ── Right: order summary (desktop only) ── */}
+          <div className="hidden lg:flex bg-white shadow-sm p-5 flex-col gap-4 lg:sticky lg:top-4">
             <h3 className="font-bold text-[#222] text-sm uppercase tracking-wide border-b border-gray-100 pb-3">Order Summary</h3>
             <div className="text-sm font-semibold text-[#333] leading-snug">{experience.title}</div>
             {tierLabel && <div className="text-xs text-[#888]">{tierLabel}</div>}
