@@ -21,7 +21,7 @@ export default function ExperiencePage({ params }: { params: { slug: string } })
         {/* Back */}
         <Link
           href="/#experiencias"
-          className="inline-flex items-center gap-1.5 text-[#3399ff] hover:text-[#ff3399] font-semibold mb-4 sm:mb-6 transition-colors text-sm"
+          className="inline-flex items-center gap-1.5 text-[#1a3a5c] hover:text-[#f5920a] font-semibold mb-4 sm:mb-6 transition-colors text-sm"
         >
           <ChevronLeft className="w-4 h-4" />
           Back to activities
@@ -41,7 +41,7 @@ export default function ExperiencePage({ params }: { params: { slug: string } })
                 sizes="(max-width: 1024px) 100vw, 50vw"
               />
               {experience.badge && (
-                <span className="absolute top-4 left-4 bg-[#ff3399] text-white text-[11px] font-bold px-3 py-1 uppercase tracking-wide shadow">
+                <span className="absolute top-4 left-4 bg-[#f5920a] text-white text-[11px] font-bold px-3 py-1 uppercase tracking-wide shadow">
                   🔥 {experience.badge}
                 </span>
               )}
@@ -60,11 +60,11 @@ export default function ExperiencePage({ params }: { params: { slug: string } })
                     </div>
                   )}
                   <div className="flex items-center gap-1 bg-gray-50 border border-gray-100 px-3 py-1.5 rounded-full">
-                    <Clock className="w-3.5 h-3.5 text-[#3399ff]" />
+                    <Clock className="w-3.5 h-3.5 text-[#1a3a5c]" />
                     <span className="text-[#555] text-sm font-medium">{experience.duration}</span>
                   </div>
                   <div className="flex items-center gap-1 bg-gray-50 border border-gray-100 px-3 py-1.5 rounded-full">
-                    <Users className="w-3.5 h-3.5 text-[#3399ff]" />
+                    <Users className="w-3.5 h-3.5 text-[#1a3a5c]" />
                     <span className="text-[#555] text-sm font-medium">Max {experience.maxGroupSize}</span>
                   </div>
                 </div>
@@ -72,14 +72,14 @@ export default function ExperiencePage({ params }: { params: { slug: string } })
                 <h1 className="font-bold text-[#222] text-2xl sm:text-3xl lg:text-4xl leading-tight mb-3">
                   {experience.title}
                 </h1>
-                <p className="text-[#3399ff] font-medium text-base sm:text-lg mb-5 leading-relaxed">
+                <p className="text-[#1a3a5c] font-medium text-base sm:text-lg mb-5 leading-relaxed">
                   {experience.subtitle}
                 </p>
 
                 {experience.urgencyText && (
                   <div className="flex items-center gap-2 bg-blue-50 border border-blue-100 px-4 py-3 mb-5">
-                    <AlertCircle className="w-4 h-4 text-[#3399ff] flex-shrink-0" />
-                    <span className="text-[#3399ff] font-semibold text-sm">{experience.urgencyText}</span>
+                    <AlertCircle className="w-4 h-4 text-[#1a3a5c] flex-shrink-0" />
+                    <span className="text-[#1a3a5c] font-semibold text-sm">{experience.urgencyText}</span>
                   </div>
                 )}
               </div>
@@ -87,10 +87,10 @@ export default function ExperiencePage({ params }: { params: { slug: string } })
               {/* Price + CTA */}
               <div className="pt-5 border-t border-gray-100">
                 <p className="text-[#999] text-xs font-medium uppercase tracking-wide mb-1">Price from</p>
-                <p className="text-[#ff3399] font-extrabold text-4xl mb-4">€{experience.price}</p>
+                <p className="text-[#f5920a] font-extrabold text-4xl mb-4">€{experience.price}</p>
                 <Link
                   href={`/checkout/${experience.slug}`}
-                  className="flex items-center justify-center gap-2 w-full bg-[#ff3399] hover:bg-[#e62e8a] active:bg-[#cc2979] text-white font-bold text-base py-4 transition-colors"
+                  className="flex items-center justify-center gap-2 w-full bg-[#f5920a] hover:bg-[#e07e08] active:bg-[#c96d07] text-white font-bold text-base py-4 transition-colors"
                 >
                   <ShoppingCart className="w-5 h-5" />
                   Book Now
@@ -118,15 +118,15 @@ export default function ExperiencePage({ params }: { params: { slug: string } })
                 {/* Highlights */}
                 <div>
                   <h3 className="font-bold text-[#333] text-sm uppercase tracking-wide mb-3 flex items-center gap-2">
-                    <span className="w-5 h-5 bg-[#ff3399]/10 rounded-full flex items-center justify-center flex-shrink-0">
-                      <Check className="w-3 h-3 text-[#ff3399]" />
+                    <span className="w-5 h-5 bg-[#f5920a]/10 rounded-full flex items-center justify-center flex-shrink-0">
+                      <Check className="w-3 h-3 text-[#f5920a]" />
                     </span>
                     Highlights
                   </h3>
                   <ul className="space-y-3">
                     {experience.highlights.map((h, i) => (
                       <li key={i} className="flex items-start gap-2.5 text-[#555]">
-                        <Check className="w-4 h-4 text-[#3399ff] mt-0.5 flex-shrink-0" />
+                        <Check className="w-4 h-4 text-[#1a3a5c] mt-0.5 flex-shrink-0" />
                         <span className="text-sm font-medium">{h}</span>
                       </li>
                     ))}
@@ -137,8 +137,8 @@ export default function ExperiencePage({ params }: { params: { slug: string } })
                 {experience.includes && experience.includes.length > 0 && (
                   <div>
                     <h3 className="font-bold text-[#333] text-sm uppercase tracking-wide mb-3 flex items-center gap-2">
-                      <span className="w-5 h-5 bg-[#3399ff]/10 rounded-full flex items-center justify-center flex-shrink-0">
-                        <Info className="w-3 h-3 text-[#3399ff]" />
+                      <span className="w-5 h-5 bg-[#1a3a5c]/10 rounded-full flex items-center justify-center flex-shrink-0">
+                        <Info className="w-3 h-3 text-[#1a3a5c]" />
                       </span>
                       What&apos;s included
                     </h3>
@@ -161,13 +161,13 @@ export default function ExperiencePage({ params }: { params: { slug: string } })
             {experience.requirements && experience.requirements.length > 0 && (
               <div className="bg-white shadow-sm p-5 sm:p-6">
                 <h3 className="font-bold text-[#222] text-base mb-4 flex items-center gap-2">
-                  <AlertCircle className="w-4 h-4 text-[#ff3399]" />
+                  <AlertCircle className="w-4 h-4 text-[#f5920a]" />
                   Requirements
                 </h3>
                 <ul className="space-y-2.5">
                   {experience.requirements.map((req, i) => (
                     <li key={i} className="text-[#555] text-sm flex items-start gap-2">
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#ff3399] mt-1.5 flex-shrink-0" />
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#f5920a] mt-1.5 flex-shrink-0" />
                       {req}
                     </li>
                   ))}
@@ -182,13 +182,13 @@ export default function ExperiencePage({ params }: { params: { slug: string } })
                   {experience.pricingTiers.map((tier, i) => (
                     <div key={i} className="flex justify-between items-center bg-gray-50 border border-gray-100 px-4 py-3">
                       <span className="text-[#555] text-sm font-medium">{tier.label}</span>
-                      <span className="text-[#ff3399] font-bold text-base">€{tier.price}</span>
+                      <span className="text-[#f5920a] font-bold text-base">€{tier.price}</span>
                     </div>
                   ))}
                 </div>
                 <Link
                   href={`/checkout/${experience.slug}`}
-                  className="flex items-center justify-center gap-2 w-full bg-[#ff3399] hover:bg-[#e62e8a] text-white font-bold text-sm py-3.5 mt-4 transition-colors"
+                  className="flex items-center justify-center gap-2 w-full bg-[#f5920a] hover:bg-[#e07e08] text-white font-bold text-sm py-3.5 mt-4 transition-colors"
                 >
                   <ShoppingCart className="w-4 h-4" />
                   Book Now

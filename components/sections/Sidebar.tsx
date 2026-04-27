@@ -30,7 +30,7 @@ export default function Sidebar() {
   return (
     <aside className="w-full flex flex-col gap-6">
       {/* Search Widget */}
-      <div className="bg-[#3399ff] p-6 text-center text-white flex flex-col gap-3 shadow-sm">
+      <div className="bg-[#1a3a5c] p-6 text-center text-white flex flex-col gap-3 shadow-sm">
         <h3 className="font-serif italic text-2xl mb-1 mt-2">Search for an activity</h3>
         <p className="text-sm mb-2">Find things to do!</p>
 
@@ -52,7 +52,7 @@ export default function Sidebar() {
 
         <button
           onClick={handleSearch}
-          className="w-full bg-[#ff3399] hover:bg-[#e62e8a] transition-colors text-white font-bold text-sm tracking-wide uppercase py-3 mt-1"
+          className="w-full bg-[#f5920a] hover:bg-[#e07e08] transition-colors text-white font-bold text-sm tracking-wide uppercase py-3 mt-1"
         >
           Find Tours
         </button>
@@ -121,7 +121,7 @@ export default function Sidebar() {
           <div className="flex flex-col gap-2 pt-4 border-t border-gray-100">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
-                <div className="w-8 h-8 rounded-full bg-[#ff3399] flex items-center justify-center text-white text-xs font-bold flex-shrink-0">
+                <div className="w-8 h-8 rounded-full bg-[#f5920a] flex items-center justify-center text-white text-xs font-bold flex-shrink-0">
                   SA
                 </div>
                 <span className="text-[#333] text-sm font-semibold">Sarah A</span>

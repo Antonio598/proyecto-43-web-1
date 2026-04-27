@@ -17,7 +17,7 @@ export default function AccountPage() {
             onClick={() => setTab('login')}
             className={`flex-1 py-3 text-sm font-bold uppercase tracking-wide transition-colors ${
               tab === 'login'
-                ? 'text-[#ff3399] border-b-2 border-[#ff3399]'
+                ? 'text-[#f5920a] border-b-2 border-[#f5920a]'
                 : 'text-[#999] hover:text-[#333]'
             }`}
           >
@@ -27,7 +27,7 @@ export default function AccountPage() {
             onClick={() => setTab('register')}
             className={`flex-1 py-3 text-sm font-bold uppercase tracking-wide transition-colors ${
               tab === 'register'
-                ? 'text-[#ff3399] border-b-2 border-[#ff3399]'
+                ? 'text-[#f5920a] border-b-2 border-[#f5920a]'
                 : 'text-[#999] hover:text-[#333]'
             }`}
           >
@@ -43,7 +43,7 @@ export default function AccountPage() {
                 <input
                   type="email"
                   placeholder="your@email.com"
-                  className="border border-gray-200 px-4 py-2.5 text-sm outline-none focus:border-[#3399ff] transition-colors"
+                  className="border border-gray-200 px-4 py-2.5 text-sm outline-none focus:border-[#1a3a5c] transition-colors"
                 />
               </div>
               <div className="flex flex-col gap-1">
@@ -51,13 +51,13 @@ export default function AccountPage() {
                 <input
                   type="password"
                   placeholder="••••••••"
-                  className="border border-gray-200 px-4 py-2.5 text-sm outline-none focus:border-[#3399ff] transition-colors"
+                  className="border border-gray-200 px-4 py-2.5 text-sm outline-none focus:border-[#1a3a5c] transition-colors"
                 />
               </div>
-              <button className="w-full bg-[#ff3399] hover:bg-[#e62e8a] text-white font-bold text-sm uppercase tracking-wide py-3 transition-colors mt-2">
+              <button className="w-full bg-[#f5920a] hover:bg-[#e07e08] text-white font-bold text-sm uppercase tracking-wide py-3 transition-colors mt-2">
                 Sign In
               </button>
-              <a href="#" className="text-center text-xs text-[#3399ff] hover:underline">
+              <a href="#" className="text-center text-xs text-[#1a3a5c] hover:underline">
                 Forgot your password?
               </a>
             </>
@@ -69,7 +69,7 @@ export default function AccountPage() {
                   <input
                     type="text"
                     placeholder="John"
-                    className="border border-gray-200 px-4 py-2.5 text-sm outline-none focus:border-[#3399ff] transition-colors"
+                    className="border border-gray-200 px-4 py-2.5 text-sm outline-none focus:border-[#1a3a5c] transition-colors"
                   />
                 </div>
                 <div className="flex flex-col gap-1">
@@ -77,7 +77,7 @@ export default function AccountPage() {
                   <input
                     type="text"
                     placeholder="Doe"
-                    className="border border-gray-200 px-4 py-2.5 text-sm outline-none focus:border-[#3399ff] transition-colors"
+                    className="border border-gray-200 px-4 py-2.5 text-sm outline-none focus:border-[#1a3a5c] transition-colors"
                   />
                 </div>
               </div>
@@ -86,7 +86,7 @@ export default function AccountPage() {
                 <input
                   type="email"
                   placeholder="your@email.com"
-                  className="border border-gray-200 px-4 py-2.5 text-sm outline-none focus:border-[#3399ff] transition-colors"
+                  className="border border-gray-200 px-4 py-2.5 text-sm outline-none focus:border-[#1a3a5c] transition-colors"
                 />
               </div>
               <div className="flex flex-col gap-1">
@@ -94,7 +94,7 @@ export default function AccountPage() {
                 <input
                   type="password"
                   placeholder="••••••••"
-                  className="border border-gray-200 px-4 py-2.5 text-sm outline-none focus:border-[#3399ff] transition-colors"
+                  className="border border-gray-200 px-4 py-2.5 text-sm outline-none focus:border-[#1a3a5c] transition-colors"
                 />
               </div>
               <div className="flex flex-col gap-1">
@@ -102,10 +102,10 @@ export default function AccountPage() {
                 <input
                   type="password"
                   placeholder="••••••••"
-                  className="border border-gray-200 px-4 py-2.5 text-sm outline-none focus:border-[#3399ff] transition-colors"
+                  className="border border-gray-200 px-4 py-2.5 text-sm outline-none focus:border-[#1a3a5c] transition-colors"
                 />
               </div>
-              <button className="w-full bg-[#ff3399] hover:bg-[#e62e8a] text-white font-bold text-sm uppercase tracking-wide py-3 transition-colors mt-2">
+              <button className="w-full bg-[#f5920a] hover:bg-[#e07e08] text-white font-bold text-sm uppercase tracking-wide py-3 transition-colors mt-2">
                 Create Account
               </button>
             </>
@@ -113,7 +113,7 @@ export default function AccountPage() {
         </div>
 
         <p className="text-center text-xs text-[#999] mt-4">
-          <Link href="/" className="text-[#3399ff] hover:underline">← Back to activities</Link>
+          <Link href="/" className="text-[#1a3a5c] hover:underline">← Back to activities</Link>
         </p>
       </div>
     </main>

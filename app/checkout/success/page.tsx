@@ -33,7 +33,7 @@ export default function CheckoutSuccessPage({
           <div className="flex flex-col gap-3">
             <a
               href="tel:+34822684504"
-              className="flex items-center justify-center gap-2 w-full border border-[#3399ff] text-[#3399ff] font-semibold text-sm py-3 hover:bg-blue-50 transition-colors"
+              className="flex items-center justify-center gap-2 w-full border border-[#1a3a5c] text-[#1a3a5c] font-semibold text-sm py-3 hover:bg-blue-50 transition-colors"
             >
               <Phone className="w-4 h-4" />
               +34 822 68 45 04
@@ -47,7 +47,7 @@ export default function CheckoutSuccessPage({
             </a>
             <Link
               href="/"
-              className="text-[#3399ff] hover:underline text-sm font-medium mt-1"
+              className="text-[#1a3a5c] hover:underline text-sm font-medium mt-1"
             >
               ← Browse more activities
             </Link>

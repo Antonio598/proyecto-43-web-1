@@ -113,11 +113,11 @@ function FaqItem({ q, a }: { q: string; a: string }) {
     <div className="border-b border-gray-100 last:border-0">
       <button
         onClick={() => setOpen(!open)}
-        className="w-full flex justify-between items-center py-4 text-left gap-4 hover:text-[#3399ff] transition-colors"
+        className="w-full flex justify-between items-center py-4 text-left gap-4 hover:text-[#1a3a5c] transition-colors"
       >
         <span className="text-sm font-semibold text-[#333]">{q}</span>
         <ChevronDown
-          className={`w-4 h-4 text-[#3399ff] flex-shrink-0 transition-transform duration-200 ${open ? 'rotate-180' : ''}`}
+          className={`w-4 h-4 text-[#1a3a5c] flex-shrink-0 transition-transform duration-200 ${open ? 'rotate-180' : ''}`}
         />
       </button>
       {open && (
@@ -140,7 +140,7 @@ export default function FaqPage() {
         <div className="flex flex-col gap-6">
           {faqs.map((section) => (
             <div key={section.category} className="bg-white shadow-sm">
-              <div className="bg-[#3399ff] px-6 py-3">
+              <div className="bg-[#1a3a5c] px-6 py-3">
                 <h2 className="text-white font-bold text-sm uppercase tracking-wide">{section.category}</h2>
               </div>
               <div className="px-6">
@@ -152,11 +152,11 @@ export default function FaqPage() {
           ))}
         </div>
 
-        <div className="mt-8 bg-[#ff3399] text-white p-6 text-center">
+        <div className="mt-8 bg-[#f5920a] text-white p-6 text-center">
           <p className="font-bold mb-2">Still have questions?</p>
           <p className="text-sm mb-4 text-white/90">Our team responds in less than 10 minutes</p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
-            <a href="tel:+34822684504" className="bg-white text-[#ff3399] font-bold text-sm px-6 py-2.5 hover:bg-gray-50 transition-colors">
+            <a href="tel:+34822684504" className="bg-white text-[#f5920a] font-bold text-sm px-6 py-2.5 hover:bg-gray-50 transition-colors">
               +34 822 68 45 04
             </a>
             <Link href="/#contacto" className="bg-white/20 hover:bg-white/30 text-white font-bold text-sm px-6 py-2.5 transition-colors">
@@ -166,7 +166,7 @@ export default function FaqPage() {
         </div>
 
         <p className="text-center text-xs text-[#999] mt-6">
-          <Link href="/" className="text-[#3399ff] hover:underline">← Back to activities</Link>
+          <Link href="/" className="text-[#1a3a5c] hover:underline">← Back to activities</Link>
         </p>
       </div>
     </main>

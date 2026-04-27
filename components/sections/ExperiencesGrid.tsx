@@ -31,7 +31,7 @@ export default function ExperiencesGrid() {
       {filtered.length === 0 ? (
         <div className="bg-white border border-gray-100 p-8 text-center text-[#999] rounded shadow-sm">
           <p className="text-lg font-medium mb-2">No activities found</p>
-          <a href="/" className="text-[#3399ff] hover:underline text-sm">View all activities</a>
+          <a href="/" className="text-[#1a3a5c] hover:underline text-sm">View all activities</a>
         </div>
       ) : (
         filtered.map((exp, index) => (

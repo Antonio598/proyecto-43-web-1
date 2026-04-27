@@ -22,7 +22,7 @@ function StarIcon() {
 
 export default function Footer() {
   return (
-    <footer id="contacto" className="bg-[#0099ff] text-white mt-auto">
+    <footer id="contacto" className="bg-[#1a3a5c] text-white mt-auto">
       <div className="max-w-[1200px] mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-8">
 
@@ -49,7 +49,7 @@ export default function Footer() {
               {/* PayPal */}
               <div className="h-8 px-3 bg-white rounded-md flex items-center justify-center shadow-sm">
                 <span className="font-bold text-[12px]">
-                  <span className="text-[#003087]">Pay</span><span className="text-[#009cde]">Pal</span>
+                  <span className="text-[#003087]">Pay</span><span className="text-[#1a3a5c]">Pal</span>
                 </span>
               </div>
               {/* Google Pay */}
@@ -173,7 +173,7 @@ export default function Footer() {
       </div>
 
       {/* Bottom bar */}
-      <div className="border-t border-white/20 bg-[#0088ee]">
+      <div className="border-t border-white/20 bg-[#152d52]">
         <div className="max-w-[1200px] mx-auto px-4 py-3 flex flex-col sm:flex-row justify-between items-center gap-2 text-[11px] text-white/70">
           <span>© {new Date().getFullYear()} TenerifeDreamsExcursion.com — All rights reserved</span>
           <div className="flex gap-4">

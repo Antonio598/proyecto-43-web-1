@@ -29,14 +29,14 @@ const tomorrow = () => {
 }
 
 function inputClass(hasError: boolean) {
-  return `w-full border ${hasError ? 'border-red-300 bg-red-50' : 'border-gray-200 bg-white'} px-3 py-2.5 text-sm text-[#333] outline-none focus:border-[#3399ff] transition-colors`
+  return `w-full border ${hasError ? 'border-red-300 bg-red-50' : 'border-gray-200 bg-white'} px-3 py-2.5 text-sm text-[#333] outline-none focus:border-[#1a3a5c] transition-colors`
 }
 
 function Field({ label, icon, error, children }: { label: string; icon: React.ReactNode; error?: string; children: React.ReactNode }) {
   return (
     <div className="flex flex-col gap-1">
       <label className="text-xs font-bold uppercase tracking-wide text-[#555] flex items-center gap-1.5">
-        <span className="text-[#3399ff]">{icon}</span>{label}
+        <span className="text-[#1a3a5c]">{icon}</span>{label}
       </label>
       {children}
       {error && <p className="text-red-500 text-xs">{error}</p>}
@@ -92,7 +92,7 @@ export default function CheckoutPage({ params }: { params: { slug: string } }) {
     <main className="bg-[#f5f5f5] min-h-screen py-6 sm:py-10">
       <div className="max-w-[960px] mx-auto px-3 sm:px-4">
 
-        <Link href={`/experiencias/${params.slug}`} className="inline-flex items-center gap-1.5 text-[#3399ff] hover:text-[#ff3399] text-sm font-semibold mb-5 transition-colors">
+        <Link href={`/experiencias/${params.slug}`} className="inline-flex items-center gap-1.5 text-[#1a3a5c] hover:text-[#f5920a] text-sm font-semibold mb-5 transition-colors">
           <ChevronLeft className="w-4 h-4" /> Back to activity
         </Link>
 
@@ -110,7 +110,7 @@ export default function CheckoutPage({ params }: { params: { slug: string } }) {
                     <button key={tier.label} type="button"
                       onClick={() => { setValue('tierLabel', tier.label); setValue('tierPrice', tier.price) }}
                       className={`flex justify-between items-center px-4 py-3 border text-sm font-medium transition-colors text-left ${
-                        tierLabel === tier.label ? 'border-[#ff3399] bg-pink-50 text-[#ff3399]' : 'border-gray-200 hover:border-[#3399ff] text-[#333]'
+                        tierLabel === tier.label ? 'border-[#f5920a] bg-pink-50 text-[#f5920a]' : 'border-gray-200 hover:border-[#1a3a5c] text-[#333]'
                       }`}
                     >
                       <span>{tier.label}</span>
@@ -158,7 +158,7 @@ export default function CheckoutPage({ params }: { params: { slug: string } }) {
             )}
 
             <button type="submit" disabled={submitting}
-              className="w-full bg-[#ff3399] hover:bg-[#e62e8a] active:bg-[#cc2979] disabled:bg-gray-300 disabled:cursor-not-allowed text-white font-bold text-base py-4 flex items-center justify-center gap-2 transition-colors min-h-[56px]"
+              className="w-full bg-[#f5920a] hover:bg-[#e07e08] active:bg-[#c96d07] disabled:bg-gray-300 disabled:cursor-not-allowed text-white font-bold text-base py-4 flex items-center justify-center gap-2 transition-colors min-h-[56px]"
             >
               {submitting ? (
                 <><span className="w-4 h-4 border-2 border-white/40 border-t-white rounded-full animate-spin" /> Redirecting to payment…</>
@@ -180,7 +180,7 @@ export default function CheckoutPage({ params }: { params: { slug: string } }) {
             <div className="flex flex-col gap-2 text-sm border-t border-gray-100 pt-3">
               <div className="flex justify-between text-[#666]"><span>Per person</span><span>€{tierPrice}</span></div>
               <div className="flex justify-between text-[#666]"><span>People</span><span>× {people}</span></div>
-              <div className="flex justify-between font-extrabold text-[#ff3399] text-lg border-t border-gray-100 pt-2 mt-1">
+              <div className="flex justify-between font-extrabold text-[#f5920a] text-lg border-t border-gray-100 pt-2 mt-1">
                 <span>Total</span><span>€{total.toFixed(2)}</span>
               </div>
             </div>
@@ -190,7 +190,7 @@ export default function CheckoutPage({ params }: { params: { slug: string } }) {
               ✓ Safety equipment included
             </div>
             <div className="flex items-center gap-2 text-xs text-[#888]">
-              <Lock className="w-3.5 h-3.5 text-[#3399ff] flex-shrink-0" />
+              <Lock className="w-3.5 h-3.5 text-[#1a3a5c] flex-shrink-0" />
               Your card details never touch our servers
             </div>
           </div>

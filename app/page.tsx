@@ -61,7 +61,7 @@ export default function Home() {
 /* Inline mobile search — avoids importing the full Sidebar just for the search box */
 function MobileSearchWidget() {
   return (
-    <div className="bg-[#3399ff] p-4 text-white flex flex-col gap-3 shadow-sm rounded-sm">
+    <div className="bg-[#1a3a5c] p-4 text-white flex flex-col gap-3 shadow-sm rounded-sm">
       <div>
         <h3 className="font-serif italic text-xl font-medium">Search for an activity</h3>
         <p className="text-white/80 text-xs mt-0.5">Find things to do in Tenerife</p>
@@ -75,7 +75,7 @@ function MobileSearchWidget() {
         />
         <button
           type="submit"
-          className="bg-[#ff3399] hover:bg-[#e62e8a] active:bg-[#cc2979] text-white font-bold text-sm px-5 py-3 transition-colors whitespace-nowrap flex-shrink-0"
+          className="bg-[#f5920a] hover:bg-[#e07e08] active:bg-[#c96d07] text-white font-bold text-sm px-5 py-3 transition-colors whitespace-nowrap flex-shrink-0"
         >
           Search
         </button>

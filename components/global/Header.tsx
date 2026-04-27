@@ -17,12 +17,12 @@ export default function Header() {
           <div className="flex items-center gap-1 truncate mr-4">
             <span className="font-semibold text-[#333] whitespace-nowrap">¿Sabías?</span>
             <span className="hidden md:inline">Puedes leer TenerifeDreamsExcursion en español.</span>
-            <a href="#" className="text-[#0099ff] hover:underline whitespace-nowrap">Continuar en español. 🇪🇸</a>
+            <a href="#" className="text-[#1a3a5c] hover:underline whitespace-nowrap">Continuar en español. 🇪🇸</a>
           </div>
           <div className="flex items-center gap-4 text-[#888] flex-shrink-0">
             <a href="#" className="hover:text-[#25D366] transition-colors p-1"><WhatsAppIcon className="w-4 h-4" /></a>
-            <a href="mailto:info@tenerifedreamsexcursion.com" className="hover:text-[#0099ff] transition-colors p-1"><Mail className="w-4 h-4" /></a>
-            <Link href="/cart" className="hover:text-[#0099ff] transition-colors p-1"><ShoppingCart className="w-4 h-4" /></Link>
+            <a href="mailto:info@tenerifedreamsexcursion.com" className="hover:text-[#1a3a5c] transition-colors p-1"><Mail className="w-4 h-4" /></a>
+            <Link href="/cart" className="hover:text-[#1a3a5c] transition-colors p-1"><ShoppingCart className="w-4 h-4" /></Link>
           </div>
         </div>
       </div>
@@ -32,29 +32,29 @@ export default function Header() {
 
         {/* Logo */}
         <Link href="/" className="flex items-center gap-0.5 shrink-0" onClick={() => setMobileMenuOpen(false)}>
-          <span className="font-sans font-extrabold text-[22px] sm:text-[26px] md:text-[30px] text-[#ff3399] leading-none tracking-tight">
+          <span className="font-sans font-extrabold text-[22px] sm:text-[26px] md:text-[30px] text-[#f5920a] leading-none tracking-tight">
             Tenerife
           </span>
           <motion.span
             animate={{ y: [0, -3, 0] }}
             transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
-            className="text-[#ff3399] text-[18px] sm:text-[20px] mx-0.5"
+            className="text-[#f5920a] text-[18px] sm:text-[20px] mx-0.5"
           >
             ✈
           </motion.span>
-          <span className="font-sans font-extrabold text-[22px] sm:text-[26px] md:text-[30px] text-[#3399ff] leading-none tracking-tight">
+          <span className="font-sans font-extrabold text-[22px] sm:text-[26px] md:text-[30px] text-[#1a3a5c] leading-none tracking-tight">
             Dreams
           </span>
         </Link>
 
         {/* Desktop: phone + hours + nav */}
         <div className="hidden md:flex items-center gap-5 lg:gap-6">
-          <a href="tel:+34822684504" className="flex items-center gap-1.5 text-[13px] text-[#0099ff] hover:text-[#0077cc] transition-colors font-medium whitespace-nowrap">
+          <a href="tel:+34822684504" className="flex items-center gap-1.5 text-[13px] text-[#1a3a5c] hover:text-[#0d2645] transition-colors font-medium whitespace-nowrap">
             <Phone className="w-3.5 h-3.5 flex-shrink-0" />
             +34 822 68 45 04
           </a>
           <div className="flex items-center gap-1.5 text-[13px] text-[#666] whitespace-nowrap">
-            <Clock className="w-3.5 h-3.5 text-[#0099ff] flex-shrink-0" />
+            <Clock className="w-3.5 h-3.5 text-[#1a3a5c] flex-shrink-0" />
             9h à 22h
           </div>
           <div className="w-px h-5 bg-gray-200" />
@@ -66,7 +66,7 @@ export default function Header() {
             <Link
               key={item.label}
               href={item.href}
-              className="text-[13px] font-bold text-[#0099ff] hover:text-[#ff3399] transition-colors tracking-wide uppercase whitespace-nowrap"
+              className="text-[13px] font-bold text-[#1a3a5c] hover:text-[#f5920a] transition-colors tracking-wide uppercase whitespace-nowrap"
             >
               {item.label}
             </Link>
@@ -75,10 +75,10 @@ export default function Header() {
 
         {/* Mobile right: icons + hamburger */}
         <div className="flex items-center gap-1 md:hidden">
-          <Link href="/cart" className="text-[#888] hover:text-[#0099ff] p-2 transition-colors">
+          <Link href="/cart" className="text-[#888] hover:text-[#1a3a5c] p-2 transition-colors">
             <ShoppingCart className="w-5 h-5" />
           </Link>
-          <a href="tel:+34822684504" className="text-[#0099ff] p-2">
+          <a href="tel:+34822684504" className="text-[#1a3a5c] p-2">
             <Phone className="w-5 h-5" />
           </a>
           <button
@@ -113,12 +113,12 @@ export default function Header() {
           >
             {/* Quick info */}
             <div className="flex items-center justify-around px-4 py-3 bg-[#f7f7f7] border-b border-gray-100 text-[13px]">
-              <a href="tel:+34822684504" className="flex items-center gap-2 text-[#0099ff] font-semibold">
+              <a href="tel:+34822684504" className="flex items-center gap-2 text-[#1a3a5c] font-semibold">
                 <Phone className="w-4 h-4" /> +34 822 68 45 04
               </a>
               <span className="text-gray-300">|</span>
               <div className="flex items-center gap-1.5 text-[#666]">
-                <Clock className="w-4 h-4 text-[#0099ff]" /> 9h–22h
+                <Clock className="w-4 h-4 text-[#1a3a5c]" /> 9h–22h
               </div>
             </div>
 
@@ -135,7 +135,7 @@ export default function Header() {
                 <Link
                   key={item.label}
                   href={item.href}
-                  className="flex items-center gap-3 px-4 py-3.5 text-[15px] font-semibold text-[#333] hover:text-[#ff3399] hover:bg-pink-50 rounded-xl transition-colors"
+                  className="flex items-center gap-3 px-4 py-3.5 text-[15px] font-semibold text-[#333] hover:text-[#f5920a] hover:bg-pink-50 rounded-xl transition-colors"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   <span className="text-xl w-7 text-center">{item.icon}</span>

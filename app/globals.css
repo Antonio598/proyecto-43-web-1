@@ -64,6 +64,6 @@
 
   /* Mobile-safe full-width button */
   .btn-primary {
-    @apply bg-[#ff3399] hover:bg-[#e62e8a] active:bg-[#cc2979] text-white font-bold text-sm uppercase tracking-wide px-6 py-3 transition-colors min-h-[44px] flex items-center justify-center;
+    @apply bg-[#f5920a] hover:bg-[#e07e08] active:bg-[#c96d07] text-white font-bold text-sm uppercase tracking-wide px-6 py-3 transition-colors min-h-[44px] flex items-center justify-center;
   }
 }

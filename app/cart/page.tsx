@@ -6,7 +6,7 @@ export default function CartPage() {
     <main className="bg-[#f5f5f5] min-h-screen py-12">
       <div className="max-w-3xl mx-auto px-4">
         <h1 className="text-2xl font-bold text-[#333] mb-6 flex items-center gap-2">
-          <ShoppingCart className="w-6 h-6 text-[#3399ff]" />
+          <ShoppingCart className="w-6 h-6 text-[#1a3a5c]" />
           My Cart
         </h1>
 
@@ -25,7 +25,7 @@ export default function CartPage() {
             <p className="text-[#999] text-sm">Your cart is empty</p>
             <Link
               href="/"
-              className="bg-[#ff3399] hover:bg-[#e62e8a] text-white font-bold text-sm uppercase tracking-wide px-6 py-3 transition-colors"
+              className="bg-[#f5920a] hover:bg-[#e07e08] text-white font-bold text-sm uppercase tracking-wide px-6 py-3 transition-colors"
             >
               Browse Activities
             </Link>

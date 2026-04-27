@@ -44,7 +44,7 @@ export default function ExperienceCard({ experience }: ExperienceCardProps) {
             sizes="(max-width: 640px) 100vw, 38vw"
           />
           {experience.badge && (
-            <span className="absolute top-3 left-3 bg-[#ff3399] text-white text-[10px] font-bold px-2.5 py-1 uppercase tracking-wide rounded-sm shadow">
+            <span className="absolute top-3 left-3 bg-[#f5920a] text-white text-[10px] font-bold px-2.5 py-1 uppercase tracking-wide rounded-sm shadow">
               🔥 Likely to Sell Out
             </span>
           )}
@@ -64,7 +64,7 @@ export default function ExperienceCard({ experience }: ExperienceCardProps) {
             <ul className="hidden sm:flex flex-col gap-1 mb-3">
               {experience.highlights.slice(0, 3).map((h, i) => (
                 <li key={i} className="text-[12px] text-[#555] flex items-start gap-1.5">
-                  <span className="text-[#3399ff] mt-0.5 flex-shrink-0">✓</span>
+                  <span className="text-[#1a3a5c] mt-0.5 flex-shrink-0">✓</span>
                   {h}
                 </li>
               ))}
@@ -79,14 +79,14 @@ export default function ExperienceCard({ experience }: ExperienceCardProps) {
               <StarRow rating={experience.rating} reviewCount={experience.reviewCount} />
               <div className="flex items-baseline gap-1">
                 <span className="text-[11px] text-[#999]">From</span>
-                <span className="text-[#ff3399] font-extrabold text-xl leading-none">{experience.priceLabel}</span>
+                <span className="text-[#f5920a] font-extrabold text-xl leading-none">{experience.priceLabel}</span>
               </div>
             </div>
 
             {/* Right: button */}
             <Link
               href={`/experiencias/${experience.slug}`}
-              className="bg-[#ff3399] hover:bg-[#e62e8a] active:bg-[#cc2979] text-white text-[12px] font-bold uppercase px-4 py-2.5 rounded-full transition-colors whitespace-nowrap flex-shrink-0 min-h-[44px] flex items-center"
+              className="bg-[#f5920a] hover:bg-[#e07e08] active:bg-[#c96d07] text-white text-[12px] font-bold uppercase px-4 py-2.5 rounded-full transition-colors whitespace-nowrap flex-shrink-0 min-h-[44px] flex items-center"
             >
               View Tour →
             </Link>

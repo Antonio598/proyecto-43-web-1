@@ -10,11 +10,11 @@ const config: Config = {
     extend: {
       colors: {
         trip: {
-          pink: '#ff3399',
-          blue: '#3399ff',
+          pink: '#f5920a',
+          blue: '#1a3a5c',
           dark: '#333333',
           light: '#f5f5f5',
-          footer: '#0099ff',
+          footer: '#1a3a5c',
         },
         trust: {
           green: '#00B67A',
@@ -27,7 +27,7 @@ const config: Config = {
         sans: ['var(--font-inter)', 'system-ui', 'sans-serif'],
       },
       backgroundImage: {
-        'gradient-volcanic': 'linear-gradient(135deg, #ff3399 0%, #3399ff 100%)',
+        'gradient-volcanic': 'linear-gradient(135deg, #f5920a 0%, #1a3a5c 100%)',
       },
       boxShadow: {
         'card-hover': '0 10px 30px rgba(0, 0, 0, 0.1)',

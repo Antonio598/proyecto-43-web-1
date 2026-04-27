@@ -36,7 +36,7 @@ export default function CheckoutErrorPage({
             {slug && (
               <Link
                 href={`/checkout/${slug}`}
-                className="flex items-center justify-center gap-2 w-full bg-[#ff3399] hover:bg-[#e62e8a] text-white font-bold text-sm py-3.5 transition-colors"
+                className="flex items-center justify-center gap-2 w-full bg-[#f5920a] hover:bg-[#e07e08] text-white font-bold text-sm py-3.5 transition-colors"
               >
                 <RotateCcw className="w-4 h-4" />
                 Try Again
@@ -49,7 +49,7 @@ export default function CheckoutErrorPage({
               <MessageCircle className="w-4 h-4" />
               Get help on WhatsApp
             </a>
-            <Link href="/" className="text-[#3399ff] hover:underline text-sm font-medium mt-1">
+            <Link href="/" className="text-[#1a3a5c] hover:underline text-sm font-medium mt-1">
               ← Back to activities
             </Link>
           </div>
