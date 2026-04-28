@@ -53,17 +53,25 @@ export const experiences: Experience[] = [
     price: 9,
     priceLabel: 'Reserva desde €9',
     pricingTiers: [
-      { label: 'Reserva - Buceador Autónomo 1 inmersión (Total: 39€)', price: 9 },
-      { label: 'Reserva - Snorkel desde barco (Total: 40€)', price: 10 },
-      { label: 'Reserva - Bautismo Clásico Principiantes (Total: 79€)', price: 15 },
-      { label: 'Reserva - Bautismo Premium Principiantes (Total: 139€)', price: 20 },
-      { label: 'Reserva - PADI Discover Scuba Diving (Total: 149€)', price: 20 },
-      { label: 'Reserva - Curso Descubrimiento 3 inm. (Total: 260€)', price: 30 },
-      { label: 'Reserva - Buceador Autónomo 5 inmersiones (Total: 185€)', price: 35 },
-      { label: 'Reserva - Buceador Autónomo 10 inmersiones (Total: 350€)', price: 50 },
-      { label: 'Reserva - Curso Nivel 1 / PADI Rescue (Total: 449€)', price: 45 },
-      { label: 'Reserva - Curso PADI Open Water Diver (Total: 539€)', price: 54 },
-      { label: 'Reserva - Curso PADI Advanced Open Water (Total: 549€)', price: 55 },
+      // ── Snorkel ──────────────────────────────────────────────────────
+      { label: 'Snorkeling desde barco (~1h)',                   price: 40,  deposit: 10 },
+      // ── Débutants ────────────────────────────────────────────────────
+      { label: 'Bautismo Clásico — Principiantes',               price: 79,  deposit: 15 },
+      { label: 'Bautismo Premium — Principiantes',               price: 139, deposit: 20 },
+      { label: 'PADI Discover Scuba Diving',                     price: 149, deposit: 20 },
+      { label: 'Stage Découverte — 3 inmersiones',               price: 260, deposit: 30 },
+      // ── Buceador Autónomo ─────────────────────────────────────────────
+      { label: 'Buceador Autónomo — 1 inmersión',                price: 39,  deposit: 9  },
+      { label: 'Buceador Autónomo — 5 inmersiones',              price: 185, deposit: 35 },
+      { label: 'Buceador Autónomo — 10 inmersiones',             price: 350, deposit: 50 },
+      // ── Cursos PADI ───────────────────────────────────────────────────
+      { label: 'Curso PADI Open Water Diver',                    price: 539, deposit: 54 },
+      { label: 'Curso PADI Advanced Open Water',                 price: 549, deposit: 55 },
+      { label: 'Curso PADI Rescue Diver',                        price: 449, deposit: 45 },
+      // ── Cursos CMAS / FFESSM ──────────────────────────────────────────
+      { label: 'Curso CMAS/FFESSM Nivel 1',                      price: 449, deposit: 45 },
+      { label: 'Curso CMAS/FFESSM Nivel 2',                      price: 489, deposit: 49 },
+      { label: 'Curso CMAS/FFESSM Nivel 3',                      price: 799, deposit: 80 },
     ],
     rating: 5.0,
     reviewCount: 12,
