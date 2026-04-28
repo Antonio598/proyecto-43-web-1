@@ -86,7 +86,14 @@ export default function CheckoutPage({ params }: { params: { slug: string } }) {
   const people = watch('people') || 1
   const tierPrice = watch('tierPrice') || experience.price
   const tierLabel = watch('tierLabel')
-  const total = tierPrice * people
+
+  const selectedTier = experience.pricingTiers?.find((t) => t.label === tierLabel)
+  const isFlat = selectedTier?.perPerson === false
+  const depositPerUnit = selectedTier?.deposit ?? tierPrice
+  const depositTotal = isFlat ? depositPerUnit : depositPerUnit * people
+  const fullTotal = isFlat ? tierPrice : tierPrice * people
+  const remainingAtVenue = fullTotal - depositTotal
+  const hasDeposit = selectedTier?.deposit !== undefined
 
   async function onSubmit(data: FormData) {
     setSubmitting(true)
@@ -121,14 +128,31 @@ export default function CheckoutPage({ params }: { params: { slug: string } }) {
         <div className="grid lg:grid-cols-[1fr_300px] gap-6 items-start">
 
           {/* ── Mobile-only order summary (shown above form) ── */}
-          <div className="lg:hidden bg-white shadow-sm p-4 flex flex-col gap-3">
+          <div className="lg:hidden bg-white shadow-sm p-4 flex flex-col gap-2">
             <h3 className="font-bold text-[#222] text-sm uppercase tracking-wide border-b border-gray-100 pb-2">Order Summary</h3>
-            <div className="text-sm font-semibold text-[#333] leading-snug">{experience.title}</div>
+            <div className="text-sm font-semibold text-[#333]">{experience.title}</div>
             {tierLabel && <div className="text-xs text-[#888]">{tierLabel}</div>}
-            <div className="flex items-center justify-between text-sm border-t border-gray-100 pt-2">
-              <span className="text-[#666]">€{tierPrice} × {people} {people === 1 ? 'person' : 'people'}</span>
-              <span className="font-extrabold text-[#f5920a] text-lg">€{total.toFixed(2)}</span>
-            </div>
+            {hasDeposit ? (
+              <div className="flex flex-col gap-1 border-t border-gray-100 pt-2 text-sm">
+                <div className="flex justify-between text-[#999]">
+                  <span>Precio total actividad</span>
+                  <span>€{fullTotal.toFixed(2)}</span>
+                </div>
+                <div className="flex justify-between text-[#999]">
+                  <span>Resto en el lugar</span>
+                  <span>€{remainingAtVenue.toFixed(2)}</span>
+                </div>
+                <div className="flex justify-between font-extrabold text-[#f5920a] text-base pt-1 border-t border-gray-100 mt-1">
+                  <span>Reserva ahora</span>
+                  <span>€{depositTotal.toFixed(2)}</span>
+                </div>
+              </div>
+            ) : (
+              <div className="flex items-center justify-between text-sm border-t border-gray-100 pt-2">
+                <span className="text-[#666]">{isFlat ? 'Total fijo' : `€${tierPrice} × ${people}`}</span>
+                <span className="font-extrabold text-[#f5920a] text-lg">€{fullTotal.toFixed(2)}</span>
+              </div>
+            )}
           </div>
 
           {/* ── Left: form ── */}
@@ -139,17 +163,31 @@ export default function CheckoutPage({ params }: { params: { slug: string } }) {
               <div className="bg-white shadow-sm p-5 sm:p-6">
                 <h2 className="font-bold text-[#222] text-base mb-4">Select your option</h2>
                 <div className="flex flex-col gap-2">
-                  {experience.pricingTiers.map((tier) => (
-                    <button key={tier.label} type="button"
-                      onClick={() => { setValue('tierLabel', tier.label); setValue('tierPrice', tier.price) }}
-                      className={`flex justify-between items-center px-4 py-3 border text-sm font-medium transition-colors text-left ${
-                        tierLabel === tier.label ? 'border-[#f5920a] bg-pink-50 text-[#f5920a]' : 'border-gray-200 hover:border-[#1a3a5c] text-[#333]'
-                      }`}
-                    >
-                      <span>{tier.label}</span>
-                      <span className="font-bold">€{tier.price}<span className="text-xs font-normal text-[#888]">/person</span></span>
-                    </button>
-                  ))}
+                  {experience.pricingTiers.map((tier) => {
+                    const isSelected = tierLabel === tier.label
+                    const tDeposit = tier.deposit
+                    const isPrivate = tier.perPerson === false
+                    return (
+                      <button key={tier.label} type="button"
+                        onClick={() => { setValue('tierLabel', tier.label); setValue('tierPrice', tier.price) }}
+                        className={`flex flex-col sm:flex-row sm:justify-between sm:items-center px-4 py-3 border text-sm font-medium transition-colors text-left gap-1 ${
+                          isSelected ? 'border-[#f5920a] bg-orange-50 text-[#f5920a]' : 'border-gray-200 hover:border-[#1a3a5c] text-[#333]'
+                        }`}
+                      >
+                        <span className="font-semibold">{tier.label}</span>
+                        <span className="flex flex-wrap items-center gap-2 text-xs sm:text-sm">
+                          <span className={`font-bold ${isSelected ? 'text-[#f5920a]' : 'text-[#333]'}`}>
+                            €{tier.price}{!isPrivate && <span className="font-normal text-[#888]">/pers</span>}
+                          </span>
+                          {tDeposit !== undefined && (
+                            <span className="bg-[#1a3a5c] text-white text-[10px] font-bold px-2 py-0.5 rounded-full whitespace-nowrap">
+                              Reserva €{tDeposit}{!isPrivate ? '/pers' : ''}
+                            </span>
+                          )}
+                        </span>
+                      </button>
+                    )
+                  })}
                 </div>
                 <input type="hidden" {...register('tierLabel')} />
                 <input type="hidden" {...register('tierPrice')} />
@@ -171,7 +209,13 @@ export default function CheckoutPage({ params }: { params: { slug: string } }) {
                   <input {...register('phone')} type="tel" placeholder="+34 600 000 000" className={inputClass(!!errors.phone)} />
                 </Field>
                 <Field label="Number of people" icon={<Users className="w-4 h-4" />} error={errors.people?.message}>
-                  <input {...register('people')} type="number" min={1} max={experience.maxGroupSize} className={inputClass(!!errors.people)} />
+                  <input
+                    {...register('people')}
+                    type="number" min={1} max={experience.maxGroupSize}
+                    disabled={isFlat}
+                    className={`${inputClass(!!errors.people)} ${isFlat ? 'opacity-50 cursor-not-allowed' : ''}`}
+                  />
+                  {isFlat && <p className="text-xs text-[#999] mt-1">Precio fijo — barco completo (máx. {experience.maxGroupSize} pers.)</p>}
                 </Field>
                 <div className="sm:col-span-2">
                   <Field label="Preferred date" icon={<Calendar className="w-4 h-4" />} error={errors.date?.message}>
@@ -205,7 +249,7 @@ export default function CheckoutPage({ params }: { params: { slug: string } }) {
               {submitting ? (
                 <><span className="w-4 h-4 border-2 border-white/40 border-t-white rounded-full animate-spin" /> Redirecting to payment…</>
               ) : (
-                <><ShoppingCart className="w-5 h-5" /> Pay €{total.toFixed(2)} securely</>
+                <><ShoppingCart className="w-5 h-5" /> {hasDeposit ? `Pay deposit €${depositTotal.toFixed(2)}` : `Pay €${fullTotal.toFixed(2)}`} securely</>
               )}
             </button>
 
@@ -220,13 +264,32 @@ export default function CheckoutPage({ params }: { params: { slug: string } }) {
             <div className="text-sm font-semibold text-[#333] leading-snug">{experience.title}</div>
             {tierLabel && <div className="text-xs text-[#888]">{tierLabel}</div>}
             <div className="flex flex-col gap-2 text-sm border-t border-gray-100 pt-3">
-              <div className="flex justify-between text-[#666]"><span>Per person</span><span>€{tierPrice}</span></div>
-              <div className="flex justify-between text-[#666]"><span>People</span><span>× {people}</span></div>
-              <div className="flex justify-between font-extrabold text-[#f5920a] text-lg border-t border-gray-100 pt-2 mt-1">
-                <span>Total</span><span>€{total.toFixed(2)}</span>
-              </div>
+              {hasDeposit ? (
+                <>
+                  <div className="flex justify-between text-[#999]">
+                    <span>Precio total actividad</span>
+                    <span>€{fullTotal.toFixed(2)}</span>
+                  </div>
+                  <div className="flex justify-between text-[#999]">
+                    <span>Resto en el lugar</span>
+                    <span>€{remainingAtVenue.toFixed(2)}</span>
+                  </div>
+                  <div className="flex justify-between font-extrabold text-[#f5920a] text-lg border-t border-gray-100 pt-2 mt-1">
+                    <span>Reserva ahora</span><span>€{depositTotal.toFixed(2)}</span>
+                  </div>
+                </>
+              ) : (
+                <>
+                  {!isFlat && <div className="flex justify-between text-[#666]"><span>Per person</span><span>€{tierPrice}</span></div>}
+                  {!isFlat && <div className="flex justify-between text-[#666]"><span>People</span><span>× {people}</span></div>}
+                  <div className="flex justify-between font-extrabold text-[#f5920a] text-lg border-t border-gray-100 pt-2 mt-1">
+                    <span>Total</span><span>€{fullTotal.toFixed(2)}</span>
+                  </div>
+                </>
+              )}
             </div>
             <div className="bg-[#f5f5f5] px-3 py-2.5 text-xs text-[#666] leading-relaxed">
+              {hasDeposit && <><span className="text-[#1a3a5c] font-semibold">✓ Solo se cobra la reserva ahora — el resto se paga en el lugar</span><br /></>}
               ✓ Free cancellation up to 48h before<br />
               ✓ Confirmation within 2 hours<br />
               ✓ Safety equipment included

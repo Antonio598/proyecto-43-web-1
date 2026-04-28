@@ -33,15 +33,16 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Experience not found' }, { status: 404 })
     }
 
-    const validTier = experience.pricingTiers?.find(
-      (t) => t.price === tierPrice && t.label === tierLabel
-    )
+    const validTier = experience.pricingTiers?.find((t) => t.label === tierLabel)
     if (!validTier) {
       return NextResponse.json({ error: 'Invalid pricing tier' }, { status: 400 })
     }
 
-    const totalEuros = tierPrice * people
-    const amountCents = String(Math.round(totalEuros * 100))
+    // Charge deposit if defined, otherwise charge the full tier price
+    const chargePerUnit = validTier.deposit ?? validTier.price
+    const isFlat = validTier.perPerson === false
+    const chargeEuros = isFlat ? chargePerUnit : chargePerUnit * people
+    const amountCents = String(Math.round(chargeEuros * 100))
     const orderId = generateOrderId()
     const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'
 
@@ -57,7 +58,7 @@ export async function POST(req: NextRequest) {
       order: orderId,
       amount: amountCents,
       currency: 'EUR',
-      productDescription: `${experience.title} — ${people} persona${people > 1 ? 's' : ''} · ${tierLabel}`,
+      productDescription: `${experience.title} — ${isFlat ? 'Privado' : `${people} persona${people > 1 ? 's' : ''}`} · ${tierLabel}`,
       merchantDescription: 'TenerifeDreamsExcursion',
       language: 'en',
       urlOk: `${siteUrl}/checkout/success?order=${orderId}&slug=${slug}`,
@@ -74,17 +75,10 @@ export async function POST(req: NextRequest) {
       )
     }
 
-    // Log the booking intent (extend with DB write later)
     console.log('[PayComet] Order created', {
-      orderId,
-      slug,
-      name,
-      email,
-      phone,
-      date,
-      people,
-      tierLabel,
-      totalEuros,
+      orderId, slug, name, email, phone, date, people,
+      tierLabel, chargeEuros,
+      fullPrice: (validTier.perPerson === false ? validTier.price : validTier.price * people),
       specialRequests,
     })
 

@@ -1,6 +1,8 @@
 export interface PricingTier {
-  label: string   // e.g. "Adulto", "Niño (2-14)"
-  price: number
+  label: string
+  price: number      // full activity price
+  deposit?: number   // amount charged now (rest paid at venue)
+  perPerson?: boolean // true (default) = price × people; false = flat rate (private bookings)
 }
 
 export interface Experience {
