@@ -250,7 +250,7 @@ function GallerySection({ images, title }: { images: string[]; title: string }) 
         >
           {/* Close */}
           <button
-            className="absolute top-4 right-4 text-white/80 hover:text-white p-2 z-10"
+            className="absolute top-4 right-4 text-white/80 hover:text-white p-3 z-10"
             onClick={() => setLightbox(null)}
           >
             <X className="w-7 h-7" />
@@ -258,7 +258,7 @@ function GallerySection({ images, title }: { images: string[]; title: string }) 
 
           {/* Prev */}
           <button
-            className="absolute left-3 sm:left-6 text-white/80 hover:text-white p-2 z-10"
+            className="absolute left-3 sm:left-6 text-white/80 hover:text-white p-3 z-10"
             onClick={(e) => { e.stopPropagation(); prev() }}
           >
             <ChevronLeft className="w-8 h-8" />
@@ -281,7 +281,7 @@ function GallerySection({ images, title }: { images: string[]; title: string }) 
 
           {/* Next */}
           <button
-            className="absolute right-3 sm:right-6 text-white/80 hover:text-white p-2 z-10"
+            className="absolute right-3 sm:right-6 text-white/80 hover:text-white p-3 z-10"
             onClick={(e) => { e.stopPropagation(); next() }}
           >
             <ChevronRight className="w-8 h-8" />

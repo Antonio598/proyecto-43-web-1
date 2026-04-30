@@ -75,14 +75,14 @@ export default function Header() {
 
         {/* Mobile right: icons + hamburger */}
         <div className="flex items-center gap-1 md:hidden">
-          <Link href="/cart" className="text-[#888] hover:text-[#1a3a5c] p-2 transition-colors">
+          <Link href="/cart" className="text-[#888] hover:text-[#1a3a5c] p-2.5 transition-colors">
             <ShoppingCart className="w-5 h-5" />
           </Link>
-          <a href="tel:+34822684504" className="text-[#1a3a5c] p-2">
+          <a href="tel:+34822684504" className="text-[#1a3a5c] p-2.5">
             <Phone className="w-5 h-5" />
           </a>
           <button
-            className="text-[#333] p-2 transition-colors"
+            className="text-[#333] p-2.5 transition-colors"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label="Toggle menu"
           >

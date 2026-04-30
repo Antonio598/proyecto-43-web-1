@@ -86,7 +86,7 @@ export default function ExperienceCard({ experience }: ExperienceCardProps) {
             {/* Right: button */}
             <Link
               href={`/experiencias/${experience.slug}`}
-              className="bg-[#f5920a] hover:bg-[#e07e08] active:bg-[#c96d07] text-white text-[12px] font-bold uppercase px-4 py-2.5 rounded-full transition-colors whitespace-nowrap flex-shrink-0 min-h-[44px] flex items-center"
+              className="bg-[#f5920a] hover:bg-[#e07e08] active:bg-[#c96d07] text-white text-sm font-bold uppercase px-4 py-2.5 rounded-full transition-colors whitespace-nowrap flex-shrink-0 min-h-[44px] flex items-center"
             >
               View Tour →
             </Link>

@@ -67,7 +67,7 @@ export default function Footer() {
             </div>
 
             {/* Google Rating */}
-            <div className="bg-white rounded-xl p-3 inline-flex items-center gap-3 w-max shadow-md">
+            <div className="bg-white rounded-xl p-3 inline-flex items-center gap-3 max-w-full shadow-md">
               <GoogleIcon />
               <div className="flex flex-col">
                 <span className="text-[#333] text-xs font-bold leading-tight">Google Rating</span>
@@ -84,33 +84,33 @@ export default function Footer() {
           {/* LINKS */}
           <div className="flex flex-col gap-5">
             <h4 className="font-bold text-base uppercase tracking-widest border-b border-white/20 pb-3">Links</h4>
-            <ul className="space-y-3 text-sm text-white/90">
+            <ul className="space-y-1 text-sm text-white/90">
               <li>
-                <Link href="/account" className="hover:text-white hover:underline transition-colors flex items-center gap-2">
+                <Link href="/account" className="hover:text-white hover:underline transition-colors flex items-center gap-2 py-2">
                   <span className="w-1.5 h-1.5 rounded-full bg-white/50 flex-shrink-0" />
                   My Account
                 </Link>
               </li>
               <li>
-                <Link href="/cart" className="hover:text-white hover:underline transition-colors flex items-center gap-2">
+                <Link href="/cart" className="hover:text-white hover:underline transition-colors flex items-center gap-2 py-2">
                   <span className="w-1.5 h-1.5 rounded-full bg-white/50 flex-shrink-0" />
                   My Cart
                 </Link>
               </li>
               <li>
-                <Link href="/faq" className="hover:text-white hover:underline transition-colors flex items-center gap-2">
+                <Link href="/faq" className="hover:text-white hover:underline transition-colors flex items-center gap-2 py-2">
                   <span className="w-1.5 h-1.5 rounded-full bg-white/50 flex-shrink-0" />
                   FAQ
                 </Link>
               </li>
               <li>
-                <a href="https://www.instagram.com/trip_tenerife?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener noreferrer" className="hover:text-white hover:underline transition-colors flex items-center gap-2">
+                <a href="https://www.instagram.com/trip_tenerife?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener noreferrer" className="hover:text-white hover:underline transition-colors flex items-center gap-2 py-2">
                   <span className="w-1.5 h-1.5 rounded-full bg-white/50 flex-shrink-0" />
                   Instagram
                 </a>
               </li>
               <li>
-                <a href="https://www.facebook.com/TripTenerife/" target="_blank" rel="noopener noreferrer" className="hover:text-white hover:underline transition-colors flex items-center gap-2">
+                <a href="https://www.facebook.com/TripTenerife/" target="_blank" rel="noopener noreferrer" className="hover:text-white hover:underline transition-colors flex items-center gap-2 py-2">
                   <span className="w-1.5 h-1.5 rounded-full bg-white/50 flex-shrink-0" />
                   Facebook
                 </a>
@@ -123,13 +123,13 @@ export default function Footer() {
             <h4 className="font-bold text-base uppercase tracking-widest border-b border-white/20 pb-3">Contact Us</h4>
             <ul className="space-y-4 text-sm">
               <li className="flex items-center gap-3">
-                <div className="w-9 h-9 rounded-full bg-white/20 flex items-center justify-center flex-shrink-0">
+                <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center flex-shrink-0">
                   <Phone className="w-4 h-4 text-white" />
                 </div>
                 <a href="tel:+34822684504" className="hover:underline text-white/90">+34 822 68 45 04</a>
               </li>
               <li className="flex items-center gap-3">
-                <div className="w-9 h-9 rounded-full bg-white/20 flex items-center justify-center flex-shrink-0">
+                <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center flex-shrink-0">
                   <Mail className="w-4 h-4 text-white" />
                 </div>
                 <a href="mailto:info@tenerifedreamsexcursion.com" className="hover:underline text-white/90 text-xs sm:text-sm">
@@ -174,7 +174,7 @@ export default function Footer() {
 
       {/* Bottom bar */}
       <div className="border-t border-white/20 bg-[#152d52]">
-        <div className="max-w-[1200px] mx-auto px-4 py-3 flex flex-col sm:flex-row justify-between items-center gap-2 text-[11px] text-white/70">
+        <div className="max-w-[1200px] mx-auto px-4 py-3 flex flex-col sm:flex-row justify-between items-center gap-2 text-xs text-white/70">
           <span>© {new Date().getFullYear()} TenerifeDreamsExcursion.com — All rights reserved</span>
           <div className="flex gap-4">
             <Link href="#" className="hover:text-white transition-colors">Privacy Policy</Link>

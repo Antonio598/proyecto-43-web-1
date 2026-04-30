@@ -51,7 +51,7 @@ const schema = z.object({
 type FormData = z.infer<typeof schema>
 
 function inputClass(hasError: boolean) {
-  return `w-full border ${hasError ? 'border-red-300 bg-red-50' : 'border-gray-200 bg-white'} px-3 py-2.5 text-sm text-[#333] outline-none focus:border-[#1a3a5c] transition-colors`
+  return `w-full border ${hasError ? 'border-red-300 bg-red-50' : 'border-gray-200 bg-white'} px-3 py-3 text-sm text-[#333] outline-none focus:border-[#1a3a5c] transition-colors`
 }
 
 function Field({ label, icon, error, children }: { label: string; icon: React.ReactNode; error?: string; children: React.ReactNode }) {
@@ -180,7 +180,7 @@ export default function CheckoutPage({ params }: { params: { slug: string } }) {
                             €{tier.price}{!isPrivate && <span className="font-normal text-[#888]">/pers</span>}
                           </span>
                           {tDeposit !== undefined && (
-                            <span className="bg-[#1a3a5c] text-white text-[10px] font-bold px-2 py-0.5 rounded-full whitespace-nowrap">
+                            <span className="bg-[#1a3a5c] text-white text-xs font-bold px-2 py-0.5 rounded-full whitespace-nowrap">
                               Reserva €{tDeposit}{!isPrivate ? '/pers' : ''}
                             </span>
                           )}
