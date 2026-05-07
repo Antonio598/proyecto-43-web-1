@@ -35,7 +35,12 @@ function formatDate(isoDate: string): string {
 const schema = z.object({
   name: z.string().min(2, 'Name too short').max(80),
   email: z.string().email('Invalid email'),
-  phone: z.string().min(9, 'Invalid phone').max(20),
+  phone: z.string()
+    .min(1, 'Phone number is required')
+    .refine(
+      (val) => /^\+\d[\d\s\-]{9,18}$/.test(val.trim()),
+      'Include your country code (e.g. +34 612 345 678)'
+    ),
   date: z.string()
     .min(1, 'Please select a date')
     .refine(
@@ -206,7 +211,7 @@ export default function CheckoutPage({ params }: { params: { slug: string } }) {
                   <input {...register('email')} type="email" placeholder="john@email.com" className={inputClass(!!errors.email)} />
                 </Field>
                 <Field label="Phone" icon={<Phone className="w-4 h-4" />} error={errors.phone?.message}>
-                  <input {...register('phone')} type="tel" placeholder="+34 600 000 000" className={inputClass(!!errors.phone)} />
+                  <input {...register('phone')} type="tel" placeholder="+34 612 345 678" className={inputClass(!!errors.phone)} />
                 </Field>
                 <Field label="Number of people" icon={<Users className="w-4 h-4" />} error={errors.people?.message}>
                   <input

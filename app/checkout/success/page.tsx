@@ -39,7 +39,9 @@ export default function CheckoutSuccessPage({
               +34 822 68 45 04
             </a>
             <a
-              href="#"
+              href="https://wa.me/34822684504"
+              target="_blank"
+              rel="noopener noreferrer"
               className="flex items-center justify-center gap-2 w-full bg-[#25D366] hover:bg-[#20ba59] text-white font-semibold text-sm py-3 transition-colors"
             >
               <MessageCircle className="w-4 h-4" />

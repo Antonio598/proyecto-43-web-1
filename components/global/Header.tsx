@@ -20,7 +20,7 @@ export default function Header() {
             <a href="#" className="text-[#1a3a5c] hover:underline whitespace-nowrap">Continuar en español. 🇪🇸</a>
           </div>
           <div className="flex items-center gap-4 text-[#888] flex-shrink-0">
-            <a href="#" className="hover:text-[#25D366] transition-colors p-1"><WhatsAppIcon className="w-4 h-4" /></a>
+            <a href="https://wa.me/34822684504" target="_blank" rel="noopener noreferrer" className="hover:text-[#25D366] transition-colors p-1"><WhatsAppIcon className="w-4 h-4" /></a>
             <a href="mailto:info@tenerifedreamsexcursion.com" className="hover:text-[#1a3a5c] transition-colors p-1"><Mail className="w-4 h-4" /></a>
             <Link href="/cart" className="hover:text-[#1a3a5c] transition-colors p-1"><ShoppingCart className="w-4 h-4" /></Link>
           </div>
@@ -146,7 +146,9 @@ export default function Header() {
 
             <div className="mx-4 mb-4 mt-1">
               <a
-                href="#"
+                href="https://wa.me/34822684504"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="flex items-center justify-center gap-2 w-full bg-[#25D366] text-white font-bold text-sm py-3.5 rounded-xl"
               >
                 <WhatsAppIcon className="w-5 h-5" /> WhatsApp us
