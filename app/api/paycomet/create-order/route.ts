@@ -3,6 +3,7 @@ import { z } from 'zod'
 import { experiences } from '@/lib/experiences'
 import { createPaycometOrder } from '@/lib/paycomet'
 import { generateOrderId } from '@/lib/order-id'
+import { prisma } from '@/lib/prisma'
 
 const schema = z.object({
   slug: z.string().min(1),
@@ -75,12 +76,27 @@ export async function POST(req: NextRequest) {
       )
     }
 
-    console.log('[PayComet] Order created', {
-      orderId, slug, name, email, phone, date, people,
-      tierLabel, chargeEuros,
-      fullPrice: (validTier.perPerson === false ? validTier.price : validTier.price * people),
-      specialRequests,
+    const fullPrice = isFlat ? validTier.price : validTier.price * people
+
+    // Persist pending order so the webhook can look up customer data
+    await prisma.pendingOrder.create({
+      data: {
+        orderId,
+        slug,
+        experienceTitle: experience.title,
+        name,
+        email,
+        phone,
+        date,
+        people,
+        tierLabel,
+        depositPaid: chargeEuros,
+        fullPrice,
+        specialRequests: specialRequests ?? null,
+      },
     })
+
+    console.log('[PayComet] Order created', { orderId, slug, name, email, tierLabel, chargeEuros, fullPrice })
 
     return NextResponse.json({ challengeUrl: paycometRes.challengeUrl, orderId })
   } catch (err) {

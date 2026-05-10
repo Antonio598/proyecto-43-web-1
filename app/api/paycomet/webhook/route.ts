@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createHmac, timingSafeEqual } from 'crypto'
+import { prisma } from '@/lib/prisma'
+import { sendBookingConfirmation } from '@/lib/resend'
 
 export async function POST(req: NextRequest) {
   try {
@@ -34,7 +36,46 @@ export async function POST(req: NextRequest) {
 
     if (Response === 'OK' && ErrorCode === '0') {
       console.log('[PayComet webhook] ✅ Payment confirmed', { Order, Amount, Currency })
-      // TODO: update order status in DB, send confirmation email, etc.
+
+      const pending = await prisma.pendingOrder.findUnique({ where: { orderId: Order } })
+      if (pending) {
+        await prisma.booking.upsert({
+          where: { orderId: Order },
+          update: { status: 'confirmed' },
+          create: {
+            orderId: Order,
+            slug: pending.slug,
+            experienceTitle: pending.experienceTitle,
+            name: pending.name,
+            email: pending.email,
+            phone: pending.phone,
+            date: pending.date,
+            people: pending.people,
+            tierLabel: pending.tierLabel,
+            depositPaid: pending.depositPaid,
+            fullPrice: pending.fullPrice,
+            status: 'confirmed',
+            specialRequests: pending.specialRequests,
+          },
+        })
+
+        await sendBookingConfirmation({
+          to: pending.email,
+          name: pending.name,
+          orderId: Order,
+          experienceTitle: pending.experienceTitle,
+          date: pending.date,
+          people: pending.people,
+          tierLabel: pending.tierLabel,
+          depositPaid: pending.depositPaid,
+          fullPrice: pending.fullPrice,
+        })
+
+        await prisma.pendingOrder.delete({ where: { orderId: Order } })
+        console.log('[PayComet webhook] Booking saved and email sent for order', Order)
+      } else {
+        console.warn('[PayComet webhook] No pending order found for', Order)
+      }
     } else {
       console.log('[PayComet webhook] ❌ Payment failed', { Order, Response, ErrorCode })
     }

@@ -2,9 +2,7 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
 import SessionProvider from '@/components/global/SessionProvider'
-import WhatsAppButton from '@/components/global/WhatsAppButton'
-import Header from '@/components/global/Header'
-import Footer from '@/components/sections/Footer'
+import SiteChrome from '@/components/global/SiteChrome'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -43,10 +41,9 @@ export default function RootLayout({
     <html lang="es" className={inter.variable}>
       <body>
         <SessionProvider>
-          <Header />
-          {children}
-          <Footer />
-          <WhatsAppButton />
+          <SiteChrome>
+            {children}
+          </SiteChrome>
         </SessionProvider>
       </body>
     </html>

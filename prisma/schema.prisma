@@ -1,0 +1,49 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model PendingOrder {
+  orderId         String   @id
+  slug            String
+  experienceTitle String
+  name            String
+  email           String
+  phone           String
+  date            String
+  people          Int
+  tierLabel       String
+  depositPaid     Float
+  fullPrice       Float
+  specialRequests String?
+  createdAt       DateTime @default(now())
+}
+
+model Booking {
+  id              String   @id @default(cuid())
+  orderId         String   @unique
+  slug            String
+  experienceTitle String
+  name            String
+  email           String
+  phone           String
+  date            String
+  people          Int
+  tierLabel       String
+  depositPaid     Float
+  fullPrice       Float
+  status          String   @default("confirmed")
+  specialRequests String?
+  createdAt       DateTime @default(now())
+}
+
+model AvailabilityBlock {
+  id        String   @id @default(cuid())
+  date      String
+  slug      String?
+  reason    String?
+  createdAt DateTime @default(now())
+}
