@@ -20,15 +20,24 @@ function StatusBadge({ status }: { status: string }) {
 export default async function AdminDashboardPage() {
   const today = new Date().toISOString().split('T')[0]
 
-  const [todayCount, upcomingCount, totalResult, allTimeCount, recentBookings] = await Promise.all([
-    prisma.booking.count({ where: { date: today, status: 'confirmed' } }),
-    prisma.booking.count({ where: { date: { gte: today }, status: 'confirmed' } }),
-    prisma.booking.aggregate({ _sum: { depositPaid: true }, where: { status: 'confirmed' } }),
-    prisma.booking.count(),
-    prisma.booking.findMany({ take: 6, orderBy: { createdAt: 'desc' } }),
-  ])
+  let todayCount = 0, upcomingCount = 0, allTimeCount = 0, totalRevenue = 0
+  let recentBookings: Awaited<ReturnType<typeof prisma.booking.findMany>> = []
+  let dbError = false
 
-  const totalRevenue = totalResult._sum.depositPaid ?? 0
+  try {
+    const [tc, uc, totalResult, atc, rb] = await Promise.all([
+      prisma.booking.count({ where: { date: today, status: 'confirmed' } }),
+      prisma.booking.count({ where: { date: { gte: today }, status: 'confirmed' } }),
+      prisma.booking.aggregate({ _sum: { depositPaid: true }, where: { status: 'confirmed' } }),
+      prisma.booking.count(),
+      prisma.booking.findMany({ take: 6, orderBy: { createdAt: 'desc' } }),
+    ])
+    todayCount = tc; upcomingCount = uc; allTimeCount = atc
+    totalRevenue = totalResult._sum.depositPaid ?? 0
+    recentBookings = rb
+  } catch {
+    dbError = true
+  }
 
   const stats = [
     { label: "Today's bookings", value: todayCount, icon: CalendarDays, color: 'text-[#1a3a5c]', bg: 'bg-blue-50' },
@@ -39,6 +48,12 @@ export default async function AdminDashboardPage() {
 
   return (
     <div className="flex flex-col gap-6">
+
+      {dbError && (
+        <div className="bg-red-50 border border-red-200 text-red-700 text-sm px-4 py-3 rounded">
+          ⚠️ Database connection error. Check that DATABASE_URL is set correctly in EasyPanel and the tables have been created.
+        </div>
+      )}
 
       {/* Stats grid */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
