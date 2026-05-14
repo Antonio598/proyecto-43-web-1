@@ -1,6 +1,7 @@
 export const dynamic = 'force-dynamic'
 
 import Link from 'next/link'
+import type { Booking } from '@prisma/client'
 import { prisma } from '@/lib/prisma'
 import { experiences } from '@/lib/experiences'
 import BookingFilters from '@/components/admin/BookingFilters'
@@ -86,7 +87,7 @@ export default async function BookingsPage({
                 </tr>
               </thead>
               <tbody>
-                {bookings.map((b) => (
+                {bookings.map((b: Booking) => (
                   <tr key={b.id} className="border-b border-gray-50 hover:bg-gray-50 transition-colors">
                     <td className="px-4 py-3.5">
                       <span className="font-mono text-[11px] text-[#888]">#{b.orderId}</span>
