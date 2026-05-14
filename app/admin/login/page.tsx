@@ -2,7 +2,6 @@
 
 import { useState } from 'react'
 import { signIn } from 'next-auth/react'
-import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
@@ -15,7 +14,6 @@ const schema = z.object({
 type FormData = z.infer<typeof schema>
 
 export default function AdminLoginPage() {
-  const router = useRouter()
   const [showPassword, setShowPassword] = useState(false)
   const [authError, setAuthError] = useState<string | null>(null)
 
@@ -25,15 +23,23 @@ export default function AdminLoginPage() {
 
   async function onSubmit(data: FormData) {
     setAuthError(null)
-    const result = await signIn('credentials', {
-      username: data.username,
-      password: data.password,
-      redirect: false,
-    })
-    if (result?.error) {
-      setAuthError('Invalid username or password.')
-    } else if (result?.ok) {
-      router.push('/admin')
+    try {
+      const result = await signIn('credentials', {
+        username: data.username,
+        password: data.password,
+        redirect: false,
+      })
+      if (!result) {
+        setAuthError('Authentication failed. Please try again.')
+      } else if (result.error) {
+        setAuthError('Invalid username or password.')
+      } else if (result.ok) {
+        window.location.href = '/admin'
+      } else {
+        setAuthError('Authentication failed. Please try again.')
+      }
+    } catch {
+      setAuthError('Network error. Please try again.')
     }
   }
 
