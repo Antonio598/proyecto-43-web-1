@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { db, type AvailabilityBlock } from '@/lib/db'
 import { experiences } from '@/lib/experiences'
 import BlockManager from '@/components/admin/BlockManager'
+import ManualBookingForm from '@/components/admin/ManualBookingForm'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 
 const DAYS = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
@@ -33,7 +34,7 @@ export default async function CalendarPage({
   const daysInMonth = new Date(year, month, 0).getDate()
   const endDate = `${year}-${pad(month)}-${daysInMonth}`
 
-  let bookings: { id: string; date: string; slug: string; name: string; people: number }[] = []
+  let bookings: { id: string; orderId: string; date: string; slug: string; name: string; people: number }[] = []
   let blocks: AvailabilityBlock[] = []
 
   try {
@@ -74,6 +75,7 @@ export default async function CalendarPage({
   const selectedDate = searchParams.selectedDate ?? null
   const activityOptions = experiences.map((e) => ({ value: e.slug, label: e.title }))
   const selectedBlocks = selectedDate ? (blocksByDate[selectedDate] ?? []) : []
+  const selectedBookings = selectedDate ? (bookingsByDate[selectedDate] ?? []) : []
 
   return (
     <div className="flex flex-col gap-5">
@@ -161,13 +163,39 @@ export default async function CalendarPage({
           </div>
         </div>
 
-        <BlockManager
-          selectedDate={selectedDate}
-          existingBlocks={selectedBlocks}
-          activityOptions={activityOptions}
-          year={year}
-          month={month}
-        />
+        <div className="flex flex-col gap-5">
+          <BlockManager
+            selectedDate={selectedDate}
+            existingBlocks={selectedBlocks}
+            activityOptions={activityOptions}
+            year={year}
+            month={month}
+          />
+
+          {/* Bookings on selected day */}
+          {selectedDate && selectedBookings.length > 0 && (
+            <div className="bg-white shadow-sm p-5 flex flex-col gap-3">
+              <h3 className="font-bold text-[#222] text-sm uppercase tracking-wide border-b border-gray-100 pb-3">
+                Reservas este día
+              </h3>
+              {selectedBookings.map((b) => (
+                <Link
+                  key={b.id}
+                  href={`/admin/bookings/${b.orderId}`}
+                  className="flex items-start justify-between gap-2 hover:bg-gray-50 px-2 py-1.5 -mx-2 rounded transition-colors"
+                >
+                  <div>
+                    <p className="text-xs font-semibold text-[#222]">{b.name}</p>
+                    <p className="text-[11px] text-[#888]">{activityOptions.find(a => a.value === b.slug)?.label ?? b.slug}</p>
+                  </div>
+                  <span className="text-[11px] text-[#888] flex-shrink-0">{b.people} pax</span>
+                </Link>
+              ))}
+            </div>
+          )}
+
+          <ManualBookingForm selectedDate={selectedDate} />
+        </div>
       </div>
     </div>
   )

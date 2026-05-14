@@ -107,15 +107,15 @@ export const db = {
       return data as Booking | null
     },
 
-    async forCalendar(startDate: string, endDate: string): Promise<{ id: string; date: string; slug: string; name: string; people: number }[]> {
+    async forCalendar(startDate: string, endDate: string): Promise<{ id: string; orderId: string; date: string; slug: string; name: string; people: number }[]> {
       const { data, error } = await sb()
         .from('Booking')
-        .select('id,date,slug,name,people')
+        .select('id,orderId,date,slug,name,people')
         .gte('date', startDate)
         .lte('date', endDate)
         .eq('status', 'confirmed')
       if (error) throw error
-      return (data ?? []) as { id: string; date: string; slug: string; name: string; people: number }[]
+      return (data ?? []) as { id: string; orderId: string; date: string; slug: string; name: string; people: number }[]
     },
 
     async upsert(data: Omit<Booking, 'id' | 'createdAt'>): Promise<void> {
