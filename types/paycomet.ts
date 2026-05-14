@@ -1,16 +1,21 @@
-export interface PaycometOrderRequest {
+export interface PaycometPaymentPayload {
   terminal: number
-  methods: number[]
+  methodId: number        // 1 = card
   order: string
-  amount: string        // cents as string e.g. "12000"
+  amount: string          // cents as string e.g. "12000"
   currency: string
+  originalIp: string
+  secure?: number
   productDescription: string
   merchantDescription: string
   language: string
   urlOk: string
   urlKo: string
-  hosted: 1
-  userInteraction: 1
+  userInteraction: number
+}
+
+export interface PaycometOrderRequest {
+  payment: PaycometPaymentPayload
 }
 
 export interface PaycometOrderResponse {

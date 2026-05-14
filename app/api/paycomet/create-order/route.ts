@@ -55,19 +55,22 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Payment gateway not configured' }, { status: 503 })
     }
 
+    const clientIp =
+      req.headers.get('x-forwarded-for')?.split(',')[0].trim() ||
+      req.headers.get('x-real-ip') ||
+      '127.0.0.1'
+
     const paycometRes = await createPaycometOrder({
       terminal,
-      methods: [1],
       order: orderId,
       amount: amountCents,
       currency: 'EUR',
+      originalIp: clientIp,
       productDescription: `${experience.title} — ${isFlat ? 'Privado' : `${people} persona${people > 1 ? 's' : ''}`} · ${tierLabel}`,
       merchantDescription: 'TenerifeDreamsExcursion',
       language: 'en',
       urlOk: `${siteUrl}/checkout/success?order=${orderId}&slug=${slug}`,
       urlKo: `${siteUrl}/checkout/error?order=${orderId}&slug=${slug}`,
-      hosted: 1,
-      userInteraction: 1,
     })
 
     if (paycometRes.errorCode !== 0 || !paycometRes.challengeUrl) {
