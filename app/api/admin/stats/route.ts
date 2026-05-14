@@ -3,7 +3,7 @@ export const dynamic = 'force-dynamic'
 import { NextResponse } from 'next/server'
 import { getServerSession } from 'next-auth'
 import { authOptions } from '@/lib/auth'
-import { prisma } from '@/lib/prisma'
+import { db } from '@/lib/db'
 
 export async function GET() {
   const session = await getServerSession(authOptions)
@@ -11,17 +11,12 @@ export async function GET() {
 
   const today = new Date().toISOString().split('T')[0]
 
-  const [todayCount, upcomingCount, totalResult, allTimeCount] = await Promise.all([
-    prisma.booking.count({ where: { date: today, status: 'confirmed' } }),
-    prisma.booking.count({ where: { date: { gte: today }, status: 'confirmed' } }),
-    prisma.booking.aggregate({ _sum: { depositPaid: true }, where: { status: 'confirmed' } }),
-    prisma.booking.count({ where: { status: 'confirmed' } }),
+  const [todayCount, upcomingCount, totalRevenue, allTimeCount] = await Promise.all([
+    db.booking.count({ date: today, status: 'confirmed' }),
+    db.booking.count({ dateGte: today, status: 'confirmed' }),
+    db.booking.sumDeposit({ status: 'confirmed' }),
+    db.booking.count({ status: 'confirmed' }),
   ])
 
-  return NextResponse.json({
-    todayCount,
-    upcomingCount,
-    totalRevenue: totalResult._sum.depositPaid ?? 0,
-    allTimeCount,
-  })
+  return NextResponse.json({ todayCount, upcomingCount, totalRevenue, allTimeCount })
 }

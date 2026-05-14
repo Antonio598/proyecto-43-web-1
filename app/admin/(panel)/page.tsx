@@ -1,7 +1,7 @@
 export const dynamic = 'force-dynamic'
 
 import Link from 'next/link'
-import { prisma } from '@/lib/prisma'
+import { db, type Booking } from '@/lib/db'
 import { CalendarDays, TrendingUp, Clock, Users } from 'lucide-react'
 
 function StatusBadge({ status }: { status: string }) {
@@ -21,18 +21,18 @@ export default async function AdminDashboardPage() {
   const today = new Date().toISOString().split('T')[0]
 
   let todayCount = 0, upcomingCount = 0, allTimeCount = 0, totalRevenue = 0
-  let recentBookings: Awaited<ReturnType<typeof prisma.booking.findMany>> = []
+  let recentBookings: Booking[] = []
 
   try {
-    const [tc, uc, totalResult, atc, rb] = await Promise.all([
-      prisma.booking.count({ where: { date: today, status: 'confirmed' } }),
-      prisma.booking.count({ where: { date: { gte: today }, status: 'confirmed' } }),
-      prisma.booking.aggregate({ _sum: { depositPaid: true }, where: { status: 'confirmed' } }),
-      prisma.booking.count(),
-      prisma.booking.findMany({ take: 6, orderBy: { createdAt: 'desc' } }),
+    const [tc, uc, rev, atc, rb] = await Promise.all([
+      db.booking.count({ date: today, status: 'confirmed' }),
+      db.booking.count({ dateGte: today, status: 'confirmed' }),
+      db.booking.sumDeposit({ status: 'confirmed' }),
+      db.booking.count(),
+      db.booking.findMany({ take: 6 }),
     ])
     todayCount = tc; upcomingCount = uc; allTimeCount = atc
-    totalRevenue = totalResult._sum.depositPaid ?? 0
+    totalRevenue = rev
     recentBookings = rb
   } catch {
     // DB unavailable — show empty state

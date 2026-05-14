@@ -1,7 +1,7 @@
 export const dynamic = 'force-dynamic'
 
 import Link from 'next/link'
-import { prisma } from '@/lib/prisma'
+import { db, type AvailabilityBlock } from '@/lib/db'
 import { experiences } from '@/lib/experiences'
 import BlockManager from '@/components/admin/BlockManager'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
@@ -34,17 +34,12 @@ export default async function CalendarPage({
   const endDate = `${year}-${pad(month)}-${daysInMonth}`
 
   let bookings: { id: string; date: string; slug: string; name: string; people: number }[] = []
-  let blocks: Awaited<ReturnType<typeof prisma.availabilityBlock.findMany>> = []
+  let blocks: AvailabilityBlock[] = []
 
   try {
     ;[bookings, blocks] = await Promise.all([
-      prisma.booking.findMany({
-        where: { date: { gte: startDate, lte: endDate }, status: 'confirmed' },
-        select: { id: true, date: true, slug: true, name: true, people: true },
-      }),
-      prisma.availabilityBlock.findMany({
-        where: { date: { gte: startDate, lte: endDate } },
-      }),
+      db.booking.forCalendar(startDate, endDate),
+      db.availabilityBlock.list({ dateGte: startDate, dateLte: endDate }),
     ])
   } catch {
     // DB unavailable — show empty calendar

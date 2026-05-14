@@ -2,14 +2,14 @@ export const dynamic = 'force-dynamic'
 
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
-import { prisma } from '@/lib/prisma'
+import { db } from '@/lib/db'
 import { ChevronLeft, Phone, MessageCircle, Mail } from 'lucide-react'
 import BookingStatusButton from '@/components/admin/BookingStatusButton'
 
 export default async function BookingDetailPage({ params }: { params: { orderId: string } }) {
   let booking = null
   try {
-    booking = await prisma.booking.findUnique({ where: { orderId: params.orderId } })
+    booking = await db.booking.findByOrderId(params.orderId)
   } catch {
     notFound()
   }

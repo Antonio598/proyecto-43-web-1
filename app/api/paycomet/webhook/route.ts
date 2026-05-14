@@ -2,7 +2,7 @@ export const dynamic = 'force-dynamic'
 
 import { NextRequest, NextResponse } from 'next/server'
 import { createHmac, timingSafeEqual } from 'crypto'
-import { prisma } from '@/lib/prisma'
+import { db } from '@/lib/db'
 import { sendBookingConfirmation } from '@/lib/resend'
 
 export async function POST(req: NextRequest) {
@@ -39,26 +39,22 @@ export async function POST(req: NextRequest) {
     if (Response === 'OK' && ErrorCode === '0') {
       console.log('[PayComet webhook] ✅ Payment confirmed', { Order, Amount, Currency })
 
-      const pending = await prisma.pendingOrder.findUnique({ where: { orderId: Order } })
+      const pending = await db.pendingOrder.find(Order)
       if (pending) {
-        await prisma.booking.upsert({
-          where: { orderId: Order },
-          update: { status: 'confirmed' },
-          create: {
-            orderId: Order,
-            slug: pending.slug,
-            experienceTitle: pending.experienceTitle,
-            name: pending.name,
-            email: pending.email,
-            phone: pending.phone,
-            date: pending.date,
-            people: pending.people,
-            tierLabel: pending.tierLabel,
-            depositPaid: pending.depositPaid,
-            fullPrice: pending.fullPrice,
-            status: 'confirmed',
-            specialRequests: pending.specialRequests,
-          },
+        await db.booking.upsert({
+          orderId: Order,
+          slug: pending.slug,
+          experienceTitle: pending.experienceTitle,
+          name: pending.name,
+          email: pending.email,
+          phone: pending.phone,
+          date: pending.date,
+          people: pending.people,
+          tierLabel: pending.tierLabel,
+          depositPaid: pending.depositPaid,
+          fullPrice: pending.fullPrice,
+          status: 'confirmed',
+          specialRequests: pending.specialRequests,
         })
 
         await sendBookingConfirmation({
@@ -73,7 +69,7 @@ export async function POST(req: NextRequest) {
           fullPrice: pending.fullPrice,
         })
 
-        await prisma.pendingOrder.delete({ where: { orderId: Order } })
+        await db.pendingOrder.delete(Order)
         console.log('[PayComet webhook] Booking saved and email sent for order', Order)
       } else {
         console.warn('[PayComet webhook] No pending order found for', Order)

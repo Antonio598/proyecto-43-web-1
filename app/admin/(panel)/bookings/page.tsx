@@ -1,7 +1,7 @@
 export const dynamic = 'force-dynamic'
 
 import Link from 'next/link'
-import { prisma } from '@/lib/prisma'
+import { db, type Booking } from '@/lib/db'
 import { experiences } from '@/lib/experiences'
 import BookingFilters from '@/components/admin/BookingFilters'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
@@ -32,30 +32,19 @@ export default async function BookingsPage({
   const status = searchParams.status ?? ''
 
   const where = {
-    ...(q ? {
-      OR: [
-        { name: { contains: q } },
-        { email: { contains: q } },
-        { orderId: { contains: q } },
-      ],
-    } : {}),
+    ...(q ? { q } : {}),
     ...(date ? { date } : {}),
     ...(slug ? { slug } : {}),
     ...(status ? { status } : {}),
   }
 
-  let bookings: Awaited<ReturnType<typeof prisma.booking.findMany>> = []
+  let bookings: Booking[] = []
   let total = 0
 
   try {
     ;[bookings, total] = await Promise.all([
-      prisma.booking.findMany({
-        where,
-        orderBy: { createdAt: 'desc' },
-        skip: (page - 1) * PAGE_SIZE,
-        take: PAGE_SIZE,
-      }),
-      prisma.booking.count({ where }),
+      db.booking.findMany({ where, skip: (page - 1) * PAGE_SIZE, take: PAGE_SIZE }),
+      db.booking.count(where),
     ])
   } catch {
     // DB unavailable — show empty state
