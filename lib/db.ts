@@ -63,8 +63,8 @@ type BookingWhere = {
 export const db = {
   booking: {
     async count(where: BookingWhere = {}): Promise<number> {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      let q: any = sb().from('Booking').select('*', { count: 'exact', head: true })
+      // eslint-disable-next-line -- supabase query builder has no precise type
+      let q: any =sb().from('Booking').select('*', { count: 'exact', head: true })
       if (where.date) q = q.eq('date', where.date)
       if (where.slug) q = q.eq('slug', where.slug)
       if (where.status) q = q.eq('status', where.status)
@@ -77,8 +77,8 @@ export const db = {
     },
 
     async sumDeposit(where: { status?: string } = {}): Promise<number> {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      let q: any = sb().from('Booking').select('depositPaid')
+      // eslint-disable-next-line -- supabase query builder has no precise type
+      let q: any =sb().from('Booking').select('depositPaid')
       if (where.status) q = q.eq('status', where.status)
       const { data, error } = await q
       if (error) throw error
@@ -87,8 +87,8 @@ export const db = {
 
     async findMany(opts: { where?: BookingWhere; skip?: number; take?: number } = {}): Promise<Booking[]> {
       const { where = {}, skip = 0, take = 20 } = opts
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      let q: any = sb().from('Booking').select('*').order('createdAt', { ascending: false })
+      // eslint-disable-next-line -- supabase query builder has no precise type
+      let q: any =sb().from('Booking').select('*').order('createdAt', { ascending: false })
       if (where.date) q = q.eq('date', where.date)
       if (where.slug) q = q.eq('slug', where.slug)
       if (where.status) q = q.eq('status', where.status)
@@ -156,8 +156,8 @@ export const db = {
 
   availabilityBlock: {
     async list(where: { date?: string; slug?: string; dateGte?: string; dateLte?: string } = {}): Promise<AvailabilityBlock[]> {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      let q: any = sb().from('AvailabilityBlock').select('*').order('date', { ascending: true })
+      // eslint-disable-next-line -- supabase query builder has no precise type
+      let q: any =sb().from('AvailabilityBlock').select('*').order('date', { ascending: true })
       if (where.date) q = q.eq('date', where.date)
       if (where.slug) q = q.eq('slug', where.slug)
       if (where.dateGte) q = q.gte('date', where.dateGte)
