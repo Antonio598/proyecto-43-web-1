@@ -44,15 +44,22 @@ export default async function BookingsPage({
     ...(status ? { status } : {}),
   }
 
-  const [bookings, total] = await Promise.all([
-    prisma.booking.findMany({
-      where,
-      orderBy: { createdAt: 'desc' },
-      skip: (page - 1) * PAGE_SIZE,
-      take: PAGE_SIZE,
-    }),
-    prisma.booking.count({ where }),
-  ])
+  let bookings: Awaited<ReturnType<typeof prisma.booking.findMany>> = []
+  let total = 0
+
+  try {
+    ;[bookings, total] = await Promise.all([
+      prisma.booking.findMany({
+        where,
+        orderBy: { createdAt: 'desc' },
+        skip: (page - 1) * PAGE_SIZE,
+        take: PAGE_SIZE,
+      }),
+      prisma.booking.count({ where }),
+    ])
+  } catch {
+    // DB unavailable — show empty state
+  }
 
   const totalPages = Math.max(1, Math.ceil(total / PAGE_SIZE))
   const activityOptions = experiences.map((e) => ({ value: e.slug, label: e.title }))

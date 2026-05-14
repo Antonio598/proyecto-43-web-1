@@ -7,7 +7,12 @@ import { ChevronLeft, Phone, MessageCircle, Mail } from 'lucide-react'
 import BookingStatusButton from '@/components/admin/BookingStatusButton'
 
 export default async function BookingDetailPage({ params }: { params: { orderId: string } }) {
-  const booking = await prisma.booking.findUnique({ where: { orderId: params.orderId } })
+  let booking = null
+  try {
+    booking = await prisma.booking.findUnique({ where: { orderId: params.orderId } })
+  } catch {
+    notFound()
+  }
   if (!booking) notFound()
 
   const remainingDue = booking.fullPrice - booking.depositPaid
@@ -46,7 +51,6 @@ export default async function BookingDetailPage({ params }: { params: { orderId:
             </span>
           </div>
 
-          {/* Detail rows */}
           <div className="divide-y divide-gray-50">
             {[
               { label: 'Guest', value: booking.name },
@@ -72,8 +76,6 @@ export default async function BookingDetailPage({ params }: { params: { orderId:
 
         {/* Actions sidebar */}
         <div className="flex flex-col gap-4">
-
-          {/* Contact guest */}
           <div className="bg-white shadow-sm p-5 flex flex-col gap-3">
             <h3 className="font-bold text-[#222] text-sm uppercase tracking-wide border-b border-gray-100 pb-3">
               Contact Guest
@@ -100,14 +102,12 @@ export default async function BookingDetailPage({ params }: { params: { orderId:
             </a>
           </div>
 
-          {/* Status change */}
           <div className="bg-white shadow-sm p-5">
             <h3 className="font-bold text-[#222] text-sm uppercase tracking-wide border-b border-gray-100 pb-3 mb-3">
               Actions
             </h3>
             <BookingStatusButton orderId={booking.orderId} currentStatus={booking.status} />
           </div>
-
         </div>
       </div>
     </div>

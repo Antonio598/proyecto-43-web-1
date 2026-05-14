@@ -22,7 +22,6 @@ export default async function AdminDashboardPage() {
 
   let todayCount = 0, upcomingCount = 0, allTimeCount = 0, totalRevenue = 0
   let recentBookings: Awaited<ReturnType<typeof prisma.booking.findMany>> = []
-  let dbError = false
 
   try {
     const [tc, uc, totalResult, atc, rb] = await Promise.all([
@@ -36,7 +35,7 @@ export default async function AdminDashboardPage() {
     totalRevenue = totalResult._sum.depositPaid ?? 0
     recentBookings = rb
   } catch {
-    dbError = true
+    // DB unavailable — show empty state
   }
 
   const stats = [
@@ -48,12 +47,6 @@ export default async function AdminDashboardPage() {
 
   return (
     <div className="flex flex-col gap-6">
-
-      {dbError && (
-        <div className="bg-red-50 border border-red-200 text-red-700 text-sm px-4 py-3 rounded">
-          ⚠️ Database connection error. Check that DATABASE_URL is set correctly in EasyPanel and the tables have been created.
-        </div>
-      )}
 
       {/* Stats grid */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">

@@ -8,7 +8,6 @@ import { ChevronLeft, ChevronRight } from 'lucide-react'
 
 const DAYS = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
 
-// Activity color palette
 const ACTIVITY_COLORS: Record<string, string> = {
   'jet-ski-tenerife': 'bg-blue-500',
   'buceo-padi': 'bg-cyan-500',
@@ -34,17 +33,23 @@ export default async function CalendarPage({
   const daysInMonth = new Date(year, month, 0).getDate()
   const endDate = `${year}-${pad(month)}-${daysInMonth}`
 
-  const [bookings, blocks] = await Promise.all([
-    prisma.booking.findMany({
-      where: { date: { gte: startDate, lte: endDate }, status: 'confirmed' },
-      select: { id: true, date: true, slug: true, name: true, people: true },
-    }),
-    prisma.availabilityBlock.findMany({
-      where: { date: { gte: startDate, lte: endDate } },
-    }),
-  ])
+  let bookings: { id: string; date: string; slug: string; name: string; people: number }[] = []
+  let blocks: Awaited<ReturnType<typeof prisma.availabilityBlock.findMany>> = []
 
-  // Group by date
+  try {
+    ;[bookings, blocks] = await Promise.all([
+      prisma.booking.findMany({
+        where: { date: { gte: startDate, lte: endDate }, status: 'confirmed' },
+        select: { id: true, date: true, slug: true, name: true, people: true },
+      }),
+      prisma.availabilityBlock.findMany({
+        where: { date: { gte: startDate, lte: endDate } },
+      }),
+    ])
+  } catch {
+    // DB unavailable — show empty calendar
+  }
+
   const bookingsByDate: Record<string, typeof bookings> = {}
   for (const b of bookings) {
     if (!bookingsByDate[b.date]) bookingsByDate[b.date] = []
@@ -56,7 +61,6 @@ export default async function CalendarPage({
     blocksByDate[bl.date].push(bl)
   }
 
-  // Build grid (Mon-first)
   const firstDow = (new Date(year, month - 1, 1).getDay() + 6) % 7
   const cells: (number | null)[] = [
     ...Array(firstDow).fill(null),
@@ -66,7 +70,6 @@ export default async function CalendarPage({
 
   const todayStr = now.toISOString().split('T')[0]
 
-  // Prev / Next month
   const prevYear = month === 1 ? year - 1 : year
   const prevMonth = month === 1 ? 12 : month - 1
   const nextYear = month === 12 ? year + 1 : year
@@ -83,7 +86,6 @@ export default async function CalendarPage({
 
         {/* Calendar card */}
         <div className="bg-white shadow-sm p-5">
-          {/* Month nav */}
           <div className="flex items-center justify-between mb-5">
             <Link
               href={`/admin/calendar?year=${prevYear}&month=${prevMonth}`}
@@ -100,7 +102,6 @@ export default async function CalendarPage({
             </Link>
           </div>
 
-          {/* Day headers */}
           <div className="grid grid-cols-7 mb-1">
             {DAYS.map((d) => (
               <div key={d} className="text-center text-[10px] font-bold uppercase tracking-wide text-[#aaa] py-2">
@@ -109,7 +110,6 @@ export default async function CalendarPage({
             ))}
           </div>
 
-          {/* Grid */}
           <div className="grid grid-cols-7 gap-px bg-gray-100">
             {cells.map((day, idx) => {
               if (!day) return <div key={`empty-${idx}`} className="bg-[#f5f5f5] aspect-square sm:aspect-auto sm:min-h-[80px]" />
@@ -121,8 +121,6 @@ export default async function CalendarPage({
               const isPast = dateStr < todayStr
               const isSelected = dateStr === selectedDate
               const isBlocked = dayBlocks.length > 0
-
-              // Unique slugs for color dots
               const slugs = dayBookings.map((b) => b.slug).filter((s, i, arr) => arr.indexOf(s) === i)
 
               return (
@@ -138,8 +136,6 @@ export default async function CalendarPage({
                   }`}>
                     {day}
                   </div>
-
-                  {/* Booking dots */}
                   {slugs.length > 0 && (
                     <div className="flex flex-wrap gap-0.5 mt-1">
                       {slugs.map((slug) => (
@@ -147,15 +143,11 @@ export default async function CalendarPage({
                       ))}
                     </div>
                   )}
-
-                  {/* Booking count */}
                   {dayBookings.length > 0 && (
                     <span className="text-[9px] text-[#888] mt-auto hidden sm:block">
                       {dayBookings.length} booking{dayBookings.length > 1 ? 's' : ''}
                     </span>
                   )}
-
-                  {/* Block indicator */}
                   {isBlocked && (
                     <span className="text-[9px] text-red-500 font-bold mt-auto hidden sm:block">Blocked</span>
                   )}
@@ -164,7 +156,6 @@ export default async function CalendarPage({
             })}
           </div>
 
-          {/* Legend */}
           <div className="flex flex-wrap gap-3 mt-4 pt-3 border-t border-gray-100">
             {experiences.map((e) => (
               <div key={e.slug} className="flex items-center gap-1.5 text-[11px] text-[#666]">
@@ -175,7 +166,6 @@ export default async function CalendarPage({
           </div>
         </div>
 
-        {/* Block manager panel */}
         <BlockManager
           selectedDate={selectedDate}
           existingBlocks={selectedBlocks}
