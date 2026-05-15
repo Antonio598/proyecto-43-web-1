@@ -11,8 +11,12 @@ export default function DeleteBookingButton({ orderId }: { orderId: string }) {
   async function handleDelete() {
     if (!confirm('Delete this booking permanently? This cannot be undone.')) return
     setLoading(true)
-    await fetch(`/api/admin/bookings/${orderId}`, { method: 'DELETE' })
-    router.refresh()
+    const res = await fetch(`/api/admin/bookings/${orderId}`, { method: 'DELETE' })
+    if (res.ok) {
+      router.refresh()
+    } else {
+      alert('Error deleting booking. Check SUPABASE_SERVICE_ROLE_KEY in EasyPanel.')
+    }
     setLoading(false)
   }
 

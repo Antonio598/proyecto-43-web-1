@@ -26,31 +26,43 @@ export default function BlockManager({ selectedDate, existingBlocks, activityOpt
   const [reason, setReason] = useState('')
   const [loading, setLoading] = useState(false)
   const [deleting, setDeleting] = useState<string | null>(null)
+  const [error, setError] = useState('')
 
   const inputClass = 'w-full border border-gray-200 bg-white px-3 py-2.5 text-sm text-[#333] outline-none focus:border-[#1a3a5c] transition-colors'
 
   async function addBlock() {
     if (!selectedDate) return
     setLoading(true)
-    await fetch('/api/admin/blocks', {
+    setError('')
+    const res = await fetch('/api/admin/blocks', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ date: selectedDate, slug: slug || null, reason: reason || null }),
     })
-    setSlug('')
-    setReason('')
-    router.refresh()
+    if (res.ok) {
+      setSlug('')
+      setReason('')
+      router.refresh()
+    } else {
+      const data = await res.json().catch(() => ({}))
+      setError(data.error ?? `Error ${res.status} — check SUPABASE_SERVICE_ROLE_KEY in EasyPanel`)
+    }
     setLoading(false)
   }
 
   async function removeBlock(id: string) {
     setDeleting(id)
-    await fetch('/api/admin/blocks', {
+    setError('')
+    const res = await fetch('/api/admin/blocks', {
       method: 'DELETE',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ id }),
     })
-    router.refresh()
+    if (res.ok) {
+      router.refresh()
+    } else {
+      setError('Error deleting block — check SUPABASE_SERVICE_ROLE_KEY in EasyPanel')
+    }
     setDeleting(null)
   }
 
@@ -99,6 +111,12 @@ export default function BlockManager({ selectedDate, existingBlocks, activityOpt
               </button>
             </div>
           ))}
+        </div>
+      )}
+
+      {error && (
+        <div className="bg-red-50 border border-red-200 text-red-600 text-xs px-3 py-2">
+          ⚠️ {error}
         </div>
       )}
 

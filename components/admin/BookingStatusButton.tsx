@@ -18,20 +18,29 @@ export default function BookingStatusButton({
   async function updateStatus(newStatus: string) {
     if (!confirm(`Mark this booking as "${newStatus}"?`)) return
     setLoading(true)
-    await fetch(`/api/admin/bookings/${orderId}`, {
+    const res = await fetch(`/api/admin/bookings/${orderId}`, {
       method: 'PATCH',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ status: newStatus }),
     })
-    router.refresh()
+    if (res.ok) {
+      router.refresh()
+    } else {
+      alert('Error updating status. Check SUPABASE_SERVICE_ROLE_KEY in EasyPanel.')
+    }
     setLoading(false)
   }
 
   async function deleteBooking() {
     if (!confirm('Delete this booking permanently? This cannot be undone.')) return
     setDeleting(true)
-    await fetch(`/api/admin/bookings/${orderId}`, { method: 'DELETE' })
-    router.push('/admin/bookings')
+    const res = await fetch(`/api/admin/bookings/${orderId}`, { method: 'DELETE' })
+    if (res.ok) {
+      router.push('/admin/bookings')
+    } else {
+      alert('Error deleting booking. Check SUPABASE_SERVICE_ROLE_KEY in EasyPanel.')
+      setDeleting(false)
+    }
   }
 
   return (

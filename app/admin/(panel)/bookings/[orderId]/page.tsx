@@ -8,11 +8,26 @@ import BookingStatusButton from '@/components/admin/BookingStatusButton'
 
 export default async function BookingDetailPage({ params }: { params: { orderId: string } }) {
   let booking = null
+  let dbError = false
   try {
     booking = await db.booking.findByOrderId(params.orderId)
   } catch {
-    notFound()
+    dbError = true
   }
+
+  if (dbError) {
+    return (
+      <div className="max-w-3xl">
+        <Link href="/admin/bookings" className="inline-flex items-center gap-1.5 text-[#1a3a5c] hover:text-[#f5920a] text-sm font-semibold mb-5 transition-colors">
+          <ChevronLeft className="w-4 h-4" /> Back to bookings
+        </Link>
+        <div className="bg-red-50 border border-red-200 text-red-700 text-sm px-5 py-4">
+          ⚠️ Database error — check that <strong>SUPABASE_SERVICE_ROLE_KEY</strong> is set correctly in EasyPanel.
+        </div>
+      </div>
+    )
+  }
+
   if (!booking) notFound()
 
   const remainingDue = booking.fullPrice - booking.depositPaid
