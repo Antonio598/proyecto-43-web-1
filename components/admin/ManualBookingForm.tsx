@@ -1,7 +1,6 @@
 'use client'
 
 import { useState } from 'react'
-import { useRouter } from 'next/navigation'
 import { experiences } from '@/lib/experiences'
 import { UserPlus } from 'lucide-react'
 
@@ -13,7 +12,6 @@ const inputClass =
   'w-full border border-gray-200 bg-white px-3 py-2.5 text-sm text-[#333] outline-none focus:border-[#1a3a5c] transition-colors'
 
 export default function ManualBookingForm({ selectedDate }: Props) {
-  const router = useRouter()
   const [expSlug, setExpSlug] = useState('')
   const [tierLabel, setTierLabel] = useState('')
   const [name, setName] = useState('')
@@ -70,8 +68,7 @@ export default function ManualBookingForm({ selectedDate }: Props) {
       setPeople(1)
       setDepositPaid(0)
       setSpecialRequests('')
-      router.refresh()
-      setTimeout(() => setSuccess(false), 4000)
+      setTimeout(() => window.location.reload(), 1500)
     } else {
       const data = await res.json().catch(() => ({}))
       setError(data.error ?? 'Error al crear la reserva')

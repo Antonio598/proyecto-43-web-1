@@ -1,7 +1,6 @@
 'use client'
 
 import { useState } from 'react'
-import { useRouter } from 'next/navigation'
 import { CalendarX2, Plus, Trash2 } from 'lucide-react'
 
 interface Block {
@@ -21,7 +20,6 @@ interface Props {
 }
 
 export default function BlockManager({ selectedDate, existingBlocks, activityOptions, year, month }: Props) {
-  const router = useRouter()
   const [slug, setSlug] = useState('')
   const [reason, setReason] = useState('')
   const [loading, setLoading] = useState(false)
@@ -42,7 +40,7 @@ export default function BlockManager({ selectedDate, existingBlocks, activityOpt
     if (res.ok) {
       setSlug('')
       setReason('')
-      router.refresh()
+      window.location.reload()
     } else {
       const data = await res.json().catch(() => ({}))
       setError(data.error ?? `Error ${res.status} — check SUPABASE_SERVICE_ROLE_KEY in EasyPanel`)
@@ -59,7 +57,7 @@ export default function BlockManager({ selectedDate, existingBlocks, activityOpt
       body: JSON.stringify({ id }),
     })
     if (res.ok) {
-      router.refresh()
+      window.location.reload()
     } else {
       setError('Error deleting block — check SUPABASE_SERVICE_ROLE_KEY in EasyPanel')
     }

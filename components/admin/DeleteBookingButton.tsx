@@ -1,11 +1,9 @@
 'use client'
 
 import { useState } from 'react'
-import { useRouter } from 'next/navigation'
 import { Trash2 } from 'lucide-react'
 
 export default function DeleteBookingButton({ orderId }: { orderId: string }) {
-  const router = useRouter()
   const [loading, setLoading] = useState(false)
 
   async function handleDelete() {
@@ -13,7 +11,7 @@ export default function DeleteBookingButton({ orderId }: { orderId: string }) {
     setLoading(true)
     const res = await fetch(`/api/admin/bookings/${orderId}`, { method: 'DELETE' })
     if (res.ok) {
-      router.refresh()
+      window.location.reload()
     } else {
       alert('Error deleting booking. Check SUPABASE_SERVICE_ROLE_KEY in EasyPanel.')
     }
