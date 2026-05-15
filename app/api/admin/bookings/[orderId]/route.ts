@@ -21,3 +21,15 @@ export async function PATCH(
 
   return NextResponse.json(booking)
 }
+
+export async function DELETE(
+  _req: NextRequest,
+  { params }: { params: { orderId: string } }
+) {
+  const session = await getServerSession(authOptions)
+  if (!session) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+
+  await db.booking.delete(params.orderId)
+
+  return NextResponse.json({ ok: true })
+}

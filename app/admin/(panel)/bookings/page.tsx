@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { db, type Booking } from '@/lib/db'
 import { experiences } from '@/lib/experiences'
 import BookingFilters from '@/components/admin/BookingFilters'
+import DeleteBookingButton from '@/components/admin/DeleteBookingButton'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 
 const PAGE_SIZE = 20
@@ -74,7 +75,7 @@ export default async function BookingsPage({
             <table className="w-full text-sm">
               <thead>
                 <tr className="bg-[#f5f5f5] border-b border-gray-100">
-                  {['Order', 'Guest', 'Activity', 'Date', 'People', 'Deposit', 'Status', ''].map((h) => (
+                  {['Order', 'Guest', 'Activity', 'Date', 'People', 'Deposit', 'Status', '', ''].map((h) => (
                     <th key={h} className="text-left px-4 py-3 text-xs font-bold uppercase tracking-wide text-[#888] whitespace-nowrap">
                       {h}
                     </th>
@@ -106,6 +107,9 @@ export default async function BookingsPage({
                       >
                         View →
                       </Link>
+                    </td>
+                    <td className="px-4 py-3.5">
+                      <DeleteBookingButton orderId={b.orderId} />
                     </td>
                   </tr>
                 ))}

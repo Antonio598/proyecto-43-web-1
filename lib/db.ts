@@ -134,6 +134,11 @@ export const db = {
       if (error) throw error
       return data as Booking
     },
+
+    async delete(orderId: string): Promise<void> {
+      const { error } = await sb().from('Booking').delete().eq('orderId', orderId)
+      if (error) throw error
+    },
   },
 
   pendingOrder: {
