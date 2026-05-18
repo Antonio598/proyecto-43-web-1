@@ -31,7 +31,7 @@ export default function ExperiencePage({ params }: { params: { slug: string } })
         <div className="bg-white shadow-sm overflow-hidden mb-6">
           <div className="grid lg:grid-cols-2 gap-0">
             {/* Main image */}
-            <div className="relative h-[260px] sm:h-[380px] lg:h-auto lg:min-h-[420px]">
+            <div className="relative h-[200px] sm:h-[300px] lg:h-auto lg:min-h-[340px]">
               <Image
                 src={experience.image}
                 alt={experience.imageAlt}
@@ -112,7 +112,7 @@ export default function ExperiencePage({ params }: { params: { slug: string } })
           <div className="lg:col-span-2 flex flex-col gap-6">
             <div className="bg-white shadow-sm p-5 sm:p-8">
               <h2 className="font-bold text-[#222] text-xl mb-4">About this activity</h2>
-              <p className="text-[#555] leading-relaxed mb-6">{experience.description}</p>
+              <p className="text-[#555] text-[17px] leading-relaxed mb-6">{experience.description}</p>
 
               <div className="grid sm:grid-cols-2 gap-6">
                 {/* Highlights */}
@@ -127,7 +127,7 @@ export default function ExperiencePage({ params }: { params: { slug: string } })
                     {experience.highlights.map((h, i) => (
                       <li key={i} className="flex items-start gap-2.5 text-[#555]">
                         <Check className="w-4 h-4 text-[#1a3a5c] mt-0.5 flex-shrink-0" />
-                        <span className="text-sm font-medium">{h}</span>
+                        <span className="text-base font-medium">{h}</span>
                       </li>
                     ))}
                   </ul>
@@ -146,7 +146,7 @@ export default function ExperiencePage({ params }: { params: { slug: string } })
                       {experience.includes.map((item, i) => (
                         <li key={i} className="flex items-start gap-2.5 text-[#555]">
                           <Check className="w-4 h-4 text-[#00B67A] mt-0.5 flex-shrink-0" />
-                          <span className="text-sm font-medium">{item}</span>
+                          <span className="text-base font-medium">{item}</span>
                         </li>
                       ))}
                     </ul>
@@ -166,7 +166,7 @@ export default function ExperiencePage({ params }: { params: { slug: string } })
                 </h3>
                 <ul className="space-y-2.5">
                   {experience.requirements.map((req, i) => (
-                    <li key={i} className="text-[#555] text-sm flex items-start gap-2">
+                    <li key={i} className="text-[#555] text-base flex items-start gap-2">
                       <span className="w-1.5 h-1.5 rounded-full bg-[#f5920a] mt-1.5 flex-shrink-0" />
                       {req}
                     </li>
