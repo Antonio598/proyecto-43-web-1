@@ -31,7 +31,7 @@ export default function ExperiencePage({ params }: { params: { slug: string } })
         <div className="bg-white shadow-sm overflow-hidden mb-6">
           <div className="grid lg:grid-cols-2 gap-0">
             {/* Main image */}
-            <div className="relative h-[200px] sm:h-[300px] lg:h-auto lg:min-h-[340px]">
+            <div className="relative h-[160px] sm:h-[220px] lg:h-auto lg:min-h-[260px]">
               <Image
                 src={experience.image}
                 alt={experience.imageAlt}
@@ -112,7 +112,7 @@ export default function ExperiencePage({ params }: { params: { slug: string } })
           <div className="lg:col-span-2 flex flex-col gap-6">
             <div className="bg-white shadow-sm p-5 sm:p-8">
               <h2 className="font-bold text-[#222] text-xl mb-4">About this activity</h2>
-              <p className="text-[#555] text-[17px] leading-relaxed mb-6">{experience.description}</p>
+              <p className="text-[#555] text-[19px] leading-relaxed mb-6">{experience.description}</p>
 
               <div className="grid sm:grid-cols-2 gap-6">
                 {/* Highlights */}

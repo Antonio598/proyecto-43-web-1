@@ -110,8 +110,8 @@ export const experiences: Experience[] = [
     reviewCount: 32,
     duration: '2 - 3 horas',
     maxGroupSize: 11,
-    image: 'https://images.unsplash.com/photo-1568430642506-a843f8b83f42?w=800&q=80',
-    imageAlt: 'Lancha rápida con ballenas saltando en Tenerife',
+    image: 'https://images.unsplash.com/photo-1547683905-f686c993aae5?w=800&q=80',
+    imageAlt: 'Ballena jorobada junto a lancha rápida en Tenerife',
     badge: 'MÁXIMO 11 PERSONAS',
     highlights: [
       'Avistamiento de ballenas, tortugas y delfines',
