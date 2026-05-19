@@ -9,7 +9,7 @@ export default function HeroSection() {
         width={1920}
         height={640}
         priority
-        className="w-full h-auto max-h-[360px] object-cover"
+        className="w-full h-auto"
         sizes="100vw"
       />
     </section>
