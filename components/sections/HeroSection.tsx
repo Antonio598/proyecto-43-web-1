@@ -2,13 +2,14 @@ import Image from 'next/image'
 
 export default function HeroSection() {
   return (
-    <section className="relative w-full overflow-hidden h-[200px] sm:h-[280px] lg:h-[360px]">
+    <section className="relative w-full overflow-hidden">
       <Image
         src="/images/banner.jpg"
         alt="Tenerife Dreams Excursion"
-        fill
+        width={1920}
+        height={640}
         priority
-        className="object-cover object-center"
+        className="w-full h-auto max-h-[360px] object-cover"
         sizes="100vw"
       />
     </section>
