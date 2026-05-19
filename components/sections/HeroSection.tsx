@@ -2,14 +2,13 @@ import Image from 'next/image'
 
 export default function HeroSection() {
   return (
-    <section className="w-full">
+    <section className="relative w-full h-[220px] sm:h-[300px] lg:h-[380px]">
       <Image
         src="/images/banner.jpg"
         alt="Tenerife Dreams Excursion"
-        width={1920}
-        height={640}
+        fill
         priority
-        className="w-full h-auto block"
+        className="object-contain object-center"
         sizes="100vw"
       />
     </section>
