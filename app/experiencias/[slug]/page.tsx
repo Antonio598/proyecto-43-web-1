@@ -31,7 +31,7 @@ export default function ExperiencePage({ params }: { params: { slug: string } })
         <div className="bg-white shadow-sm overflow-hidden mb-6">
           <div className="grid lg:grid-cols-2 gap-0">
             {/* Main image */}
-            <div className="relative h-[160px] sm:h-[220px] lg:h-auto lg:min-h-[260px]">
+            <div className="relative h-[160px] sm:h-[220px] lg:h-[300px]">
               <Image
                 src={experience.image}
                 alt={experience.imageAlt}
