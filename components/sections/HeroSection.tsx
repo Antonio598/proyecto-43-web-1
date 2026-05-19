@@ -8,7 +8,7 @@ export default function HeroSection() {
         alt="Tenerife Dreams Excursion"
         fill
         priority
-        className="object-contain object-center"
+        className="object-cover object-center"
         sizes="100vw"
       />
     </section>
