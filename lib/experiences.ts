@@ -110,8 +110,12 @@ export const experiences: Experience[] = [
     reviewCount: 32,
     duration: '2 - 3 horas',
     maxGroupSize: 11,
-    image: '/images/speedboat/speedboat-hero.jpg',
+    image: '/images/speedboat/speedboat-1.jpg',
     imageAlt: 'Lancha rápida con ballenas en Tenerife',
+    gallery: [
+      '/images/speedboat/speedboat-1.jpg',
+      '/images/speedboat/speedboat-2.jpg',
+    ],
     badge: 'MÁXIMO 11 PERSONAS',
     highlights: [
       'Avistamiento de ballenas, tortugas y delfines',
