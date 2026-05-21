@@ -26,6 +26,11 @@ export const metadata: Metadata = {
     locale: 'es_ES',
     type: 'website',
   },
+  icons: {
+    icon: '/images/Icon.png',
+    shortcut: '/images/Icon.png',
+    apple: '/images/Icon.png',
+  },
   robots: {
     index: true,
     follow: true,
