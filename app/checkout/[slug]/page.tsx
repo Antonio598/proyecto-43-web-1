@@ -38,8 +38,8 @@ const schema = z.object({
   phone: z.string()
     .min(1, 'Phone number is required')
     .refine(
-      (val) => /^\+\d[\d\s\-]{9,18}$/.test(val.trim()),
-      'Include your country code (e.g. +34 612 345 678)'
+      (val) => /^\+34[\s\-]?\d{3}[\s\-]?\d{3}[\s\-]?\d{3}$/.test(val.trim()),
+      'Must be a Spanish number: +34 followed by 9 digits (e.g. +34 612 345 678)'
     ),
   date: z.string()
     .min(1, 'Please select a date')
@@ -224,7 +224,7 @@ export default function CheckoutPage({ params }: { params: { slug: string } }) {
                   <input {...register('email')} type="email" placeholder="john@email.com" className={inputClass(!!errors.email)} />
                 </Field>
                 <Field label="Phone" icon={<Phone className="w-4 h-4" />} error={errors.phone?.message}>
-                  <input {...register('phone')} type="tel" placeholder="+34 612 345 678" className={inputClass(!!errors.phone)} />
+                  <input {...register('phone')} type="tel" placeholder="+34 612 345 678" maxLength={16} className={inputClass(!!errors.phone)} />
                 </Field>
                 <Field label="Number of people" icon={<Users className="w-4 h-4" />} error={errors.people?.message}>
                   <input
