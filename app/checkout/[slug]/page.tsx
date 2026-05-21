@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useCallback } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
@@ -87,6 +87,19 @@ export default function CheckoutPage({ params }: { params: { slug: string } }) {
 
   const [submitting, setSubmitting] = useState(false)
   const [serverError, setServerError] = useState<string | null>(null)
+  const [dateAvailability, setDateAvailability] = useState<{ checking: boolean; blocked: boolean; reason: string }>({ checking: false, blocked: false, reason: '' })
+
+  const checkAvailability = useCallback(async (date: string) => {
+    if (!date) return
+    setDateAvailability({ checking: true, blocked: false, reason: '' })
+    try {
+      const res = await fetch(`/api/availability?date=${date}&slug=${params.slug}`)
+      const data = await res.json()
+      setDateAvailability({ checking: false, blocked: !data.available, reason: data.reason ?? '' })
+    } catch {
+      setDateAvailability({ checking: false, blocked: false, reason: '' })
+    }
+  }, [params.slug])
 
   const people = watch('people') || 1
   const tierPrice = watch('tierPrice') || experience.price
@@ -224,12 +237,33 @@ export default function CheckoutPage({ params }: { params: { slug: string } }) {
                 </Field>
                 <div className="sm:col-span-2">
                   <Field label="Preferred date" icon={<Calendar className="w-4 h-4" />} error={errors.date?.message}>
-                    <input {...register('date')} type="date" min={getMinBookingDate()} className={inputClass(!!errors.date)} />
-                    {isPastCutoff() ? (
+                    <input
+                      {...register('date')}
+                      type="date"
+                      min={getMinBookingDate()}
+                      className={inputClass(!!errors.date || dateAvailability.blocked)}
+                      onChange={(e) => {
+                        register('date').onChange(e)
+                        checkAvailability(e.target.value)
+                      }}
+                    />
+                    {dateAvailability.checking && (
+                      <p className="text-xs text-[#888] mt-1 flex items-center gap-1">
+                        <span className="w-3 h-3 border-2 border-[#888]/40 border-t-[#888] rounded-full animate-spin inline-block" />
+                        Checking availability…
+                      </p>
+                    )}
+                    {dateAvailability.blocked && !dateAvailability.checking && (
+                      <p className="text-xs text-red-600 bg-red-50 border border-red-200 px-3 py-2 mt-1 leading-relaxed font-medium">
+                        ⛔ {dateAvailability.reason || 'This date is not available. Please choose another date.'}
+                      </p>
+                    )}
+                    {!dateAvailability.blocked && !dateAvailability.checking && isPastCutoff() && (
                       <p className="text-xs text-amber-600 bg-amber-50 border border-amber-200 px-3 py-2 mt-1 leading-relaxed">
                         ⚠️ Tonight&apos;s booking window has closed (23:30). The earliest available date is <strong>{formatDate(getMinBookingDate())}</strong>.
                       </p>
-                    ) : (
+                    )}
+                    {!dateAvailability.blocked && !dateAvailability.checking && !isPastCutoff() && (
                       <p className="text-xs text-[#999] mt-1">
                         Bookings close at 23:30 the day before your chosen date.
                       </p>
@@ -248,7 +282,7 @@ export default function CheckoutPage({ params }: { params: { slug: string } }) {
               <div className="bg-red-50 border border-red-200 text-red-700 text-sm px-4 py-3">{serverError}</div>
             )}
 
-            <button type="submit" disabled={submitting}
+            <button type="submit" disabled={submitting || dateAvailability.blocked || dateAvailability.checking}
               className="w-full bg-[#f5920a] hover:bg-[#e07e08] active:bg-[#c96d07] disabled:bg-gray-300 disabled:cursor-not-allowed text-white font-bold text-base py-4 flex items-center justify-center gap-2 transition-colors min-h-[56px]"
             >
               {submitting ? (

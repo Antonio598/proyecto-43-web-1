@@ -49,6 +49,16 @@ export async function POST(req: NextRequest) {
     const orderId = generateOrderId()
     const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'
 
+    // Server-side availability check — blocks cannot be bypassed from the client
+    const blocks = await db.availabilityBlock.list({ date })
+    const blocked = blocks.find((b) => b.slug === null || b.slug === slug)
+    if (blocked) {
+      return NextResponse.json(
+        { error: blocked.reason ?? 'This date is not available for bookings.' },
+        { status: 409 }
+      )
+    }
+
     const terminal = Number(process.env.PAYCOMET_TERMINAL)
     if (!terminal || isNaN(terminal)) {
       console.error('PAYCOMET_TERMINAL not configured')
