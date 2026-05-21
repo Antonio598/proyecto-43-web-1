@@ -38,8 +38,8 @@ const schema = z.object({
   phone: z.string()
     .min(1, 'Phone number is required')
     .refine(
-      (val) => /^\+34[\s\-]?\d{3}[\s\-]?\d{3}[\s\-]?\d{3}$/.test(val.trim()),
-      'Must be a Spanish number: +34 followed by 9 digits (e.g. +34 612 345 678)'
+      (val) => /^\+\d{1,3}[\s\-]?\d[\d\s\-]{6,14}$/.test(val.trim()),
+      'Include your country code (e.g. +34 612 345 678 / +44 7911 123456)'
     ),
   date: z.string()
     .min(1, 'Please select a date')
